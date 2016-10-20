@@ -36,23 +36,24 @@ RSpec.configure do |config|
   end
 
   # see  http://devblog.avdi.org/2012/08/31/configuring-database_cleaner-with-rails-rspec-capybara-and-selenium/
-  config.before(:suite) do
-    # DatabaseCleaner[:active_record].strategy = :transaction
-    DatabaseCleaner.strategy = :deletion
-    DatabaseCleaner.clean_with(:truncation)
-    #Sidekiq::Testing.inline!
-    #load Rails.root + "db/seeds.rb" 
-  end
+  # config.before(:suite) do
+  #   # DatabaseCleaner[:active_record].strategy = :transaction
+  #   DatabaseCleaner.strategy = :deletion
+  #   DatabaseCleaner.clean_with(:truncation)
+  #   #Sidekiq::Testing.inline!
+  #   #load Rails.root + "db/seeds.rb"
+  # end
 
-  config.before(:each) do
-    DatabaseCleaner.strategy = :truncation
-  end
+  # Not working with splice enigne
+  # config.before(:each) do
+  #   DatabaseCleaner.strategy = :truncation
+  # end
 
   config.before(:each) do
     DatabaseCleaner.start
   end
 
-  config.after(:each) do
+  config.before(:each) do
     DatabaseCleaner.clean
   end
 

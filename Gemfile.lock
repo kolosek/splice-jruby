@@ -30,6 +30,17 @@ GEM
       activemodel (= 4.2.5.1)
       activesupport (= 4.2.5.1)
       arel (~> 6.0)
+    activerecord-jdbc-adapter (1.3.21)
+      activerecord (>= 2.2)
+    activerecord-jdbcderby-adapter (1.3.21)
+      activerecord-jdbc-adapter (~> 1.3.21)
+      jdbc-derby (~> 10.6)
+    activerecord-jdbcpostgresql-adapter (1.3.21)
+      activerecord-jdbc-adapter (~> 1.3.21)
+      jdbc-postgres (>= 9.1)
+    activerecord-jdbcsqlite3-adapter (1.3.21)
+      activerecord-jdbc-adapter (~> 1.3.21)
+      jdbc-sqlite3 (>= 3.7.2, < 3.9)
     activesupport (4.2.5.1)
       i18n (~> 0.7)
       json (~> 1.7, >= 1.7.7)
@@ -42,9 +53,8 @@ GEM
       coderay (>= 1.0.0)
       erubis (>= 2.6.6)
       rack (>= 0.9.0)
-    binding_of_caller (0.7.2)
-      debug_inspector (>= 0.0.1)
     builder (3.2.2)
+    byebug (9.0.6)
     capybara (2.6.2)
       addressable
       mime-types (>= 1.16)
@@ -67,9 +77,9 @@ GEM
     coffee-script-source (1.10.0)
     commonjs (0.2.7)
     concurrent-ruby (1.0.0)
+    concurrent-ruby (1.0.0-java)
     connection_pool (2.2.0)
     database_cleaner (1.5.1)
-    debug_inspector (0.0.2)
     diff-lcs (1.2.5)
     docile (1.1.5)
     draper (2.1.0)
@@ -85,17 +95,23 @@ GEM
       factory_girl (~> 4.5.0)
       railties (>= 3.0.0)
     ffi (1.9.10)
+    ffi (1.9.10-java)
     globalid (0.3.6)
       activesupport (>= 4.1.0)
+    httpclient (2.8.2.4)
     i18n (0.7.0)
     jbuilder (2.4.1)
       activesupport (>= 3.0.0, < 5.1)
       multi_json (~> 1.2)
+    jdbc-derby (10.11.1.1)
+    jdbc-postgres (9.4.1206)
+    jdbc-sqlite3 (3.8.11.2)
     jquery-rails (4.1.0)
       rails-dom-testing (~> 1.0)
       railties (>= 4.2.0)
       thor (>= 0.14, < 2.0)
     json (1.8.3)
+    json (1.8.3-java)
     less (2.6.0)
       commonjs (~> 0.2.7)
     less-rails (2.7.1)
@@ -103,6 +119,9 @@ GEM
       less (~> 2.6.0)
       sprockets (> 2, < 4)
       tilt
+    lock_jar (0.15.2)
+      naether (~> 0.15.0)
+      thor (>= 0.18.1)
     loofah (2.0.3)
       nokogiri (>= 1.5.9)
     mail (2.6.3)
@@ -112,13 +131,23 @@ GEM
     mini_portile2 (2.0.0)
     minitest (5.8.4)
     multi_json (1.11.2)
+    naether (0.15.0)
+      httpclient
+      rjb (> 1.4.0, < 1.6.0)
+    naether (0.15.0-java)
+      httpclient
     nokogiri (1.6.7.2)
       mini_portile2 (~> 2.0.0.rc2)
-    pg (0.18.4)
+    nokogiri (1.6.7.2-java)
     pry (0.10.3)
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
       slop (~> 3.4)
+    pry (0.10.3-java)
+      coderay (~> 1.1.0)
+      method_source (~> 0.8.1)
+      slop (~> 3.4)
+      spoon (~> 0.0)
     rack (1.6.4)
     rack-protection (1.5.3)
       rack
@@ -158,6 +187,7 @@ GEM
       json (~> 1.4)
     redis (3.2.2)
     request_store (1.3.0)
+    rjb (1.5.4)
     rspec-core (3.4.3)
       rspec-support (~> 3.4.0)
     rspec-expectations (3.4.0)
@@ -210,7 +240,12 @@ GEM
       temple (~> 0.7.3)
       tilt (>= 1.3.3, < 2.1)
     slop (3.6.0)
+    spoon (0.0.6)
+      ffi
     spring (1.6.3)
+    spring-commands-rspec (1.0.4)
+      spring (>= 0.9.1)
+    spring-jruby (1.4.3)
     sprockets (3.5.2)
       concurrent-ruby (~> 1.0)
       rack (> 1, < 3)
@@ -221,6 +256,7 @@ GEM
     temple (0.7.6)
     thor (0.19.1)
     thread_safe (0.3.5)
+    thread_safe (0.3.5-java)
     tilt (2.0.2)
     turbolinks (2.5.3)
       coffee-rails
@@ -234,21 +270,20 @@ GEM
     uglifier (2.7.2)
       execjs (>= 0.3.0)
       json (>= 1.8.0)
-    web-console (2.3.0)
-      activemodel (>= 4.0)
-      binding_of_caller (>= 0.7.2)
-      railties (>= 4.0)
-      sprockets-rails (>= 2.0, < 4.0)
     websocket (1.2.2)
     xpath (2.0.0)
       nokogiri (~> 1.3)
 
 PLATFORMS
+  java
   ruby
 
 DEPENDENCIES
+  activerecord-jdbcderby-adapter
+  activerecord-jdbcpostgresql-adapter
+  activerecord-jdbcsqlite3-adapter
   better_errors
-  binding_of_caller
+  byebug
   capybara
   capybara-webkit
   coffee-rails (~> 4.1.0)
@@ -257,7 +292,7 @@ DEPENDENCIES
   factory_girl_rails
   jbuilder (~> 2.0)
   jquery-rails
-  pg
+  lock_jar
   pry
   rails (= 4.2.5.1)
   rails_12factor
@@ -270,11 +305,11 @@ DEPENDENCIES
   simplecov
   sinatra
   slim
-  spring
+  spring-commands-rspec (~> 1.0.4)
+  spring-jruby
   turbolinks
   twitter-bootstrap-rails
   uglifier (>= 1.3.0)
-  web-console (~> 2.0)
 
 BUNDLED WITH
-   1.11.2
+   1.13.5

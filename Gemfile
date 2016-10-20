@@ -1,11 +1,17 @@
 source 'https://rubygems.org'
 
-ruby "2.3.0"
-
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.5.1'
 # Use postgresql as the database for Active Record
-gem 'pg'
+# gem 'pg'
+
+platforms :jruby do
+  # JDBC database adapters for database. Include relevant driver
+  gem 'activerecord-jdbcderby-adapter'
+  gem 'activerecord-jdbcsqlite3-adapter', platform: :jruby
+  gem 'activerecord-jdbcpostgresql-adapter'
+end
+
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
@@ -40,10 +46,16 @@ gem 'draper'
 
 gem 'rails_12factor'
 
+# Load Jar dependencies
+gem 'lock_jar'
+
 group :development, :test do
   gem 'pry'
-    # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
-  gem 'spring'
+  gem 'byebug', platform: :mri
+
+  # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
+  gem 'spring-jruby'
+
 end
 
 group :test do
@@ -55,12 +67,14 @@ group :test do
   gem 'selenium-webdriver'
   gem 'capybara'
   gem 'capybara-webkit'
+  # Rspec command for spring
+  gem 'spring-commands-rspec', '~> 1.0.4'
 end
 
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> in views
-  gem 'web-console', '~> 2.0'
+  # gem 'web-console', '~> 2.0'
   gem 'better_errors'
-  gem 'binding_of_caller'
+  # gem 'binding_of_caller', platform: :jruby
 end
 
