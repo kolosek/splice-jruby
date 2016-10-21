@@ -11,15 +11,44 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161019100128) do
-
-  # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
+ActiveRecord::Schema.define(version: 20161020143022) do
 
   create_table "companies", force: :cascade do |t|
-    t.string   "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string   "name",       limit: 255
+    t.datetime "created_at", limit: 29,  null: false
+    t.datetime "updated_at", limit: 29,  null: false
+    t.string   "name",       limit: 255
+    t.datetime "created_at", limit: 29,  null: false
+    t.datetime "updated_at", limit: 29,  null: false
+    t.string   "name",       limit: 255
+    t.datetime "created_at", limit: 29
+    t.datetime "updated_at", limit: 29
+  end
+
+  create_table "profiles", force: :cascade do |t|
+    t.integer  "user_id",      limit: 10
+    t.string   "profile_name", limit: 255
+    t.integer  "views",        limit: 10,  default: 0
+    t.datetime "created_at",   limit: 29,              null: false
+    t.datetime "updated_at",   limit: 29,              null: false
+    t.integer  "user_id",      limit: 10
+    t.string   "profile_name", limit: 255
+    t.integer  "views",        limit: 10,  default: 0
+    t.datetime "created_at",   limit: 29,              null: false
+    t.datetime "updated_at",   limit: 29,              null: false
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.integer  "company_id", limit: 10
+    t.string   "name",       limit: 255
+    t.string   "email",      limit: 255
+    t.datetime "created_at", limit: 29,  null: false
+    t.datetime "updated_at", limit: 29,  null: false
+    t.integer  "company_id", limit: 10
+    t.string   "name",       limit: 255
+    t.string   "email",      limit: 255
+    t.datetime "created_at", limit: 29,  null: false
+    t.datetime "updated_at", limit: 29,  null: false
   end
 
 end

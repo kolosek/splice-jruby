@@ -1,6 +1,6 @@
 default: &default
     adapter: jdbcderby
-    database: jruby_splicedb
+    database: splicedb
     username: splice
     password: admin
     driver: com.splicemachine.db.jdbc.ClientDriver
@@ -10,14 +10,13 @@ default: &default
 
 development:
   <<: *default
-  database: db/jruby_splice_development
+  schema: jruby_splice_development
 
 
 test:
   <<: *default
-  database: db/jruby_splice_test
+  schema: jruby_splice_test
 
 production:
   <<: *default
-  database: db/jruby_splice_production
-
+  schema: jruby_splice_production
