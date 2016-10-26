@@ -2,14 +2,15 @@ source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.5.1'
-# Use postgresql as the database for Active Record
-# gem 'pg'
+
 
 platforms :jruby do
   # JDBC database adapters for database. Include relevant driver
   gem 'activerecord-jdbcderby-adapter'
   gem 'activerecord-jdbcsqlite3-adapter', platform: :jruby
   gem 'activerecord-jdbcpostgresql-adapter'
+  gem 'jdbc-mysql'
+  gem 'activerecord-jdbc-adapter'
 end
 
 # Use SCSS for stylesheets
@@ -20,6 +21,12 @@ gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.1.0'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
+
+platforms :ruby do
+  gem 'mysql2'
+  # Use postgresql as the database for Active Record
+# gem 'pg'
+end
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
@@ -51,10 +58,12 @@ gem 'lock_jar'
 
 group :development, :test do
   gem 'pry'
+  gem 'pry-nav'
   gem 'byebug', platform: :mri
 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
-  gem 'spring-jruby'
+  # gem 'spring-jruby'
+  gem 'spring'
 
 end
 
@@ -77,4 +86,3 @@ group :development do
   gem 'better_errors'
   # gem 'binding_of_caller', platform: :jruby
 end
-
