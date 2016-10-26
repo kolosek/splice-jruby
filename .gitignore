@@ -20,4 +20,7 @@
 !/log/.keep
 /tmp
 
+#Ignore custom files
+.byebug_history
+
 
