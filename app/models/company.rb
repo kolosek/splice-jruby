@@ -1,6 +1,15 @@
 class Company < ActiveRecord::Base
-  has_many :users
+  include Scopeable
+
+  has_many :users, dependent: :destroy
   has_many :profiles, through: :users
+  has_one :address, as: :addressable
+
+  validates :name, presence: true
+
+  attr_readonly :description
+
+  scope :grouped, -> { group :name }
 
   def total_profile_views
     profiles.sum(:views)
