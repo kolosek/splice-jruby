@@ -14,6 +14,7 @@ describe Company do
     it_behaves_like 'model update', :name, 'New Company Name'
     it_behaves_like 'model readonly update', :description, 'Company Description'
     it_behaves_like 'model destroy'
+    it_behaves_like 'model create_with', :name, 'New Company', :description, 'This Is A New Company'
   end
 
   describe 'Validation' do
@@ -40,10 +41,29 @@ describe Company do
 
     it_behaves_like 'join and include query', User
 
+    it_behaves_like 'distinct selector', :name
+
+    it_behaves_like 'eager_load selector', :users
+
+    it_behaves_like 'preload selector', :users
+
+    it_behaves_like 'references selector', :users
+
+    it_behaves_like 'reverse_order selector'
+
+    it_behaves_like 'find_by selector', :name, 'name1', 'name2'
+
+    it_behaves_like 'range conditions'
+
+    it_behaves_like 'subset conditions'
   end
 
   describe 'Additional functions' do
     it_behaves_like 'pessimistic locking'
+
+    it_behaves_like 'extending scope'
+
+    it_behaves_like 'none relation'
   end
 
 

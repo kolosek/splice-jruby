@@ -28,6 +28,17 @@ RSpec.shared_examples 'model destroy' do
   end
 end
 
+RSpec.shared_examples 'model create_with' do |find_by_field, find_by_value, field, value|
+  it 'creates with value' do
+    expect{ model.create_with(field => value).find_or_create_by(find_by_field => find_by_value) }.to change(model, :count).by(1)
+    expect(model.last[find_by_field]).to eq(find_by_value)
+  end
+
+  it 'returns an existing model' do
+    model.create!(find_by_field => find_by_value)
+    expect{ model.create_with(field => value).find_or_create_by(find_by_field => find_by_value) }.to change(model, :count).by(0)
+  end
+end
 
 
 RSpec.shared_examples 'model validation' do |*fields|
@@ -244,14 +255,16 @@ RSpec.shared_examples 'selector' do |scope_action, options = {}|
         [item_1, item_2]
       when :grouped
         item_1.update(name: item_2.name)
-        [item_1]
+        { item_1.name => 2 }
       when :having_grouped
         [item_1, item_2]
       when :offsetted
         [item_2]
       end
 
-      expect(model.send(scope_action)).to eq return_array
+      result = model.send(scope_action)
+      result = result.count if scope_action == :grouped
+      expect(result).to eq return_array
     end
   end
 end
@@ -307,3 +320,120 @@ RSpec.shared_examples 'having selector' do
   end
 end
 
+RSpec.shared_examples 'distinct selector' do |field|
+  let!(:item_1) { create model, field => 1 }
+  let!(:item_2) { create model, field => 2 }
+  let!(:item_3) { create model, field => 2 }
+  let!(:item_4) { create model, field => 3 }
+
+  it "returns unique values" do
+    expect(model.select(field).distinct.map(&field).map(&:to_i)).to eq([1, 2, 3])
+  end
+end
+
+RSpec.shared_examples 'eager_load selector' do |association|
+  let!(:main_item) { create model }
+
+  before do
+    @sub_item1 = main_item.send(association).create!(id: nil)
+    @sub_item2 = main_item.send(association).create!(id: nil)
+    @sub_item3 = main_item.send(association).create!(id: nil)
+  end
+
+  it "loads the associated items" do
+    expect(model.eager_load(association).where(id: main_item.id).first.send(association).to_a).to eq([@sub_item1, @sub_item2, @sub_item3])
+  end
+end
+
+RSpec.shared_examples 'extending scope' do
+  let!(:item_1) { create model }
+  let!(:item_2) { create model }
+  let!(:item_3) { create model }
+  let!(:item_4) { create model }
+  let!(:item_5) { create model }
+  let!(:item_6) { create model }
+
+  it "allows extending a scope" do
+    scope = model.all.extending do
+      def page(number)
+        per_page = 4
+        limit(per_page).offset((number - 1) * per_page)
+      end
+    end
+    expect(scope.page(2).to_a).to eq([item_5, item_6])
+  end
+end
+
+RSpec.shared_examples 'none relation' do |association|
+  it "returns an empty active record relation" do
+    expect(model.none.to_a).to eq([])
+  end
+end
+
+RSpec.shared_examples 'preload selector' do |association|
+  let!(:main_item) { create model }
+
+  before do
+    @sub_item1 = main_item.send(association).create!(id: nil)
+    @sub_item2 = main_item.send(association).create!(id: nil)
+    @sub_item3 = main_item.send(association).create!(id: nil)
+  end
+
+  it "loads the associated items" do
+    expect(model.preload(association).where(id: main_item.id).first.send(association).to_a).to eq([@sub_item1, @sub_item2, @sub_item3])
+  end
+end
+
+RSpec.shared_examples 'references selector' do |association|
+  let!(:main_item) { create model }
+
+  before do
+    @sub_item1 = main_item.send(association).create!(id: nil, created_at: 1.week.ago)
+    @sub_item2 = main_item.send(association).create!(id: nil, created_at: 2.weeks.ago)
+    @sub_item3 = main_item.send(association).create!(id: nil, created_at: 3.weeks.ago)
+  end
+
+  it "loads the associated items with an SQL query fragment" do
+    expect(model.includes(association).where("#{association}.created_at >= ?", 16.days.ago).references(association).first.send(association)).to eq([@sub_item1, @sub_item2])
+  end
+end
+
+RSpec.shared_examples 'reverse_order selector' do
+  let!(:item1) { create model, name: 'name1' }
+  let!(:item2) { create model, name: 'name2' }
+  let!(:item3) { create model, name: 'name3' }
+
+  it "reverses the order of returned items" do
+    expect(model.order(:name).reverse_order).to eq([item3, item2, item1])
+  end
+end
+
+RSpec.shared_examples 'find_by selector' do |field, value1, value2|
+  let!(:item1) { create model, field => value1 }
+  let!(:item2) { create model, field => value2 }
+
+  it "returns the item with the correct value" do
+    expect(model.find_by(field => value1)).to eq(item1)
+  end
+end
+
+RSpec.shared_examples 'range conditions' do
+  let!(:item1) { create model, created_at: 1.day.ago }
+  let!(:item2) { create model, created_at: 2.days.ago }
+  let!(:item3) { create model, created_at: 4.days.ago }
+
+  it "returns the item with the correct value" do
+    expect(model.where(created_at: 3.days.ago..DateTime.now)).to eq([item1, item2])
+  end
+end
+
+RSpec.shared_examples 'subset conditions' do
+  let!(:item1) { create model, name: 'name1' }
+  let!(:item2) { create model, name: 'name2' }
+  let!(:item3) { create model, name: 'name3' }
+  let!(:item4) { create model, name: 'name4' }
+
+  it "returns the items with the correct values" do
+    expect(model.where(name: ['name1', 'name2', 'name4'])).to eq([item1, item2, item4])
+  end
+end
