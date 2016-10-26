@@ -44,10 +44,14 @@ RSpec.configure do |config|
   #   #load Rails.root + "db/seeds.rb"
   # end
 
+  config.before(:suite) do
+    DatabaseCleaner.clean_with(:transaction)
+  end
+
   # Not working with splice enigne
-  # config.before(:each) do
-  #   DatabaseCleaner.strategy = :truncation
-  # end
+  config.before(:each) do
+    DatabaseCleaner.strategy = :transaction
+  end
 
   config.before(:each) do
     DatabaseCleaner.start
