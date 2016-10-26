@@ -1,8 +1,52 @@
 describe Company do
+  let(:model) { described_class }
+
   it { should have_db_column(:name).of_type(:string) }
-  # it { should validate_presence_of(:email) }
   it { should have_many(:users) }
   it { should have_many(:profiles).through(:users) }
+  it { should have_one(:address) }
+
+
+  describe 'CRUD operations' do
+    subject(:item) { create model }
+
+    it_behaves_like 'model create'
+    it_behaves_like 'model update', :name, 'New Company Name'
+    it_behaves_like 'model readonly update', :description, 'Company Description'
+    it_behaves_like 'model destroy'
+  end
+
+  describe 'Validation' do
+    it_behaves_like 'model validation', :name
+  end
+
+  describe 'Associations' do
+    it_behaves_like 'has_many association', User
+    it_behaves_like 'has_one association', Address
+    it_behaves_like 'polymorphic association', :address, Address
+    it_behaves_like 'has_many through association', Profile, User
+  end
+
+  describe 'Selectors' do
+    it_behaves_like 'selector', :all_records
+    it_behaves_like 'selector', :ordered
+    it_behaves_like 'selector', :reverse_ordered
+    it_behaves_like 'selector', :limited
+    it_behaves_like 'selector', :selected
+    it_behaves_like 'selector', :grouped
+    it_behaves_like 'selector', :offsetted
+
+    it_behaves_like 'find selector'
+
+    it_behaves_like 'join and include query', User
+
+  end
+
+  describe 'Additional functions' do
+    it_behaves_like 'pessimistic locking'
+  end
+
+
 
   describe 'database actions' do
     let!(:company) { create :company }
@@ -35,6 +79,28 @@ describe Company do
     it "allows plucking profile ids" do
       expect(company.profiles.pluck(:id)).to eq([profile1.id, profile2.id, profile3.id])
     end
+
+    it 'destroy the company and attached objects' do
+      company.destroy!
+      expect(Company.where(id: company.id).exists?).to eq(false)
+      expect(User.where(id: user1.id).exists?).to eq(false)
+      expect(User.where(id: user2.id).exists?).to eq(false)
+      expect(User.where(id: user3.id).exists?).to eq(false)
+      expect(Profile.where(id: profile1.id).exists?).to eq(false)
+      expect(Profile.where(id: profile2.id).exists?).to eq(false)
+      expect(Profile.where(id: profile3.id).exists?).to eq(false)
+    end
+
+    it 'should be able to create address' do
+      # create_address wipes the addressable_id on the address on splice
+      address = company.create_address!(street_name: 'SomeStreet', street_number: '123')
+
+      expect(address.street_name).to eq('SomeStreet')
+      expect(address.street_number).to eq('123')
+      expect(address.addressable).to eq(company)
+    end
+
+
 
   end
 end
