@@ -1,22 +1,22 @@
 default: &default
-    adapter: jdbcderby
-    database: splicedb
-    username: splice
-    password: admin
-    driver: com.splicemachine.db.jdbc.ClientDriver
-    url: jdbc:splice://localhost:1527/splicedb
-    prepared_statements: true
-    pool: 1000
+  adapter: jdbcderby
+  database: splicedb
+  username: splice
+  password: admin
+  driver: com.splicemachine.db.jdbc.ClientDriver
+  url: jdbc:splice://localhost:1527/splicedb
+  prepared_statements: true
+  pool: 1000
+
 
 development:
   <<: *default
-  schema: jruby_splice_development
-
+  database: jruby_splice_development
 
 test:
   <<: *default
-  schema: jruby_splice_test
+  database: jruby_splice_test
 
 production:
   <<: *default
-  schema: jruby_splice_production
+  database: jruby_splice_production
