@@ -4,7 +4,7 @@ module Rails
 
       def database_configuration
         require 'erb'
-        puts "Platform: #{RbConfig::CONFIG['ruby_install_name']}"
+
         case RbConfig::CONFIG['ruby_install_name']
           when 'ruby'
             YAML::load(ERB.new(IO.read('config/database_ruby.yml')).result)
