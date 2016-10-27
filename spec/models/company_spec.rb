@@ -56,6 +56,22 @@ describe Company do
     it_behaves_like 'range conditions'
 
     it_behaves_like 'subset conditions'
+
+    it_behaves_like 'find_or_create_by selector', :name, 'Company1'
+
+    it_behaves_like 'find_or_create_by! selector', :name, 'Company1'
+
+    it_behaves_like 'find_or_initialize_by selector', :name, 'Company1'
+
+    it_behaves_like 'select_all selector'
+
+    it_behaves_like 'pluck selector', :name
+
+    it_behaves_like 'ids selector'
+
+    it_behaves_like 'exists? selector', :name, 'val1', 'val2'
+
+    it_behaves_like 'minimum selector', :name, ['3', '5', '1', '4', '2']
   end
 
   describe 'Additional functions' do

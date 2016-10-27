@@ -437,3 +437,86 @@ RSpec.shared_examples 'subset conditions' do
     expect(model.where(name: ['name1', 'name2', 'name4'])).to eq([item1, item2, item4])
   end
 end
+
+RSpec.shared_examples 'find_or_create_by selector' do |field, value|
+  it "creates a new object when it doesn't exist" do
+    expect(model.find_or_create_by(field => value).send(field)).to eq(value)
+  end
+
+  it "returns an existing object" do
+    item1 = create(model, field => value)
+    expect(model.find_or_create_by(field => value)).to eq(item1)
+  end
+end
+
+RSpec.shared_examples 'find_or_create_by! selector' do |field, value|
+  it "creates a new object when it doesn't exist" do
+    expect(model.find_or_create_by!(field => value).send(field)).to eq(value)
+  end
+
+  it "returns an existing object" do
+    item1 = create(model, field => value)
+    expect(model.find_or_create_by!(field => value)).to eq(item1)
+  end
+end
+
+RSpec.shared_examples 'find_or_initialize_by selector' do |field, value|
+  it "initializes a new object when it doesn't exist" do
+    expect(model.find_or_initialize_by(field => value).attributes).to eq(model.new(field => value).attributes)
+  end
+
+  it "returns an existing object" do
+    item1 = create(model, field => value)
+    expect(model.find_or_initialize_by(field => value)).to eq(item1)
+  end
+end
+
+RSpec.shared_examples 'select_all selector' do
+  let!(:item) { create model }
+
+  it "returns an array of hashes with results from the database" do
+    expect(model.connection.select_all("SELECT id, created_at, updated_at FROM #{model.table_name} WHERE id = #{item.id}").to_a).to eq([{"id" => item.id, "created_at" => item.created_at.to_s(:db), "updated_at" => item.updated_at.to_s(:db)}])
+  end
+end
+
+RSpec.shared_examples 'pluck selector' do |field|
+  let!(:item1) { create model, field => 'val1' }
+  let!(:item2) { create model, field => 'val2' }
+  let!(:item3) { create model, field => 'val3' }
+
+  it "returns an array of values for the field" do
+    expect(model.pluck(field)).to eq(['val1', 'val2', 'val3'])
+  end
+end
+
+RSpec.shared_examples 'ids selector' do
+  let!(:item1) { create model }
+  let!(:item2) { create model }
+  let!(:item3) { create model }
+
+  it "returns an array of values for the field" do
+    expect(model.ids).to eq([item1.id, item2.id, item3.id])
+  end
+end
+
+RSpec.shared_examples 'exists? selector' do |field, value, other_value|
+  let!(:item) { create model, field => value }
+
+  it "returns true when object exists" do
+    expect(model.where(field => value).exists?).to eq(true)
+  end
+
+  it "returns false when object doesn't exist" do
+    expect(model.where(field => other_value).exists?).to eq(false)
+  end
+end
+
+RSpec.shared_examples 'minimum selector' do |field, values|
+  it "returns the minimal value for selected field" do
+    minimum = values.min
+    values.each do |value|
+      create(model, field => value)
+    end
+    expect(model.minimum(field)).to eq(minimum)
+  end
+end
