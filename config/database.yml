@@ -1,5 +1,5 @@
 default: &default
-  adapter: jdbcderby
+  adapter: jdbc
   database: splicedb
   username: splice
   password: admin
