@@ -4,7 +4,7 @@ describe "Welcome", :type => :feature do
     before {visit root_path}
 
     it "should sign up successfully - tests slug that is necessary", js: true do
-      expect(page.body).to have_content("Welcome")
+      expect(page.body).to have_content("Rails")
     end
   end
 end

@@ -5,10 +5,10 @@ RSpec.shared_examples 'model create' do
 end
 
 RSpec.shared_examples 'model update' do |field, value|
-  before { item.update field => value }
 
   it 'is updated' do
-    expect(model.where(id: item.id)[0].send(field)).to eq value
+    old_field = item.send(field)
+    expect{item.update field => value}.to change{item.send(field)}.from(old_field).to(value)
   end
 end
 
@@ -51,7 +51,6 @@ RSpec.shared_examples 'model validation' do |*fields|
     end
   end
 end
-
 
 RSpec.shared_examples 'belongs_to association' do |model_associated, required = false|
   let (:item) { create model }
@@ -239,7 +238,7 @@ end
 RSpec.shared_examples 'selector' do |scope_action, group_by: nil, options: {}|
   describe ".#{scope_action}" do
     let!(:item_1) { create model, options }
-    let!(:item_2) { create model, options }
+    let!(:item_2) { create model, options}
 
     it 'returns items' do
       return_result = case scope_action
@@ -254,7 +253,6 @@ RSpec.shared_examples 'selector' do |scope_action, group_by: nil, options: {}|
       when :selected
         [item_1, item_2]
       when :grouped
-        item_1.update(group_by => item_2.name)
         { item_1.send(group_by) => 2 }
       when :having_grouped
         { item_1.try(group_by) => 1, item_2.try(group_by) => 1 }
@@ -270,6 +268,19 @@ RSpec.shared_examples 'selector' do |scope_action, group_by: nil, options: {}|
       expect(result).to eq return_result
     end
   end
+end
+
+RSpec.shared_examples 'selector all with update' do |field, options = {}|
+  let!(:item_1) { create model }
+  let!(:item_2) { create model }
+
+  describe ".all after update" do
+    it 'returns item' do
+      item_2.update(options)
+      expect(model.where(id: item_2.id)[0].send(field)).to eq item_2.send(field)
+    end
+  end
+
 end
 
 RSpec.shared_examples 'find selector' do
