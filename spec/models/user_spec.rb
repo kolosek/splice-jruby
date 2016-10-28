@@ -23,7 +23,7 @@ describe User do
   end
 
   describe 'Selectors' do
-    it_behaves_like 'selector', :having_grouped, { credit: 1 }
+    it_behaves_like 'selector', :having_grouped, group_by: :email, options: { credit: 1 }
 
   end
 

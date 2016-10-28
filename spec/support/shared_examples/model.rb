@@ -111,24 +111,24 @@ RSpec.shared_examples 'has_many association' do |model_associated, required = fa
     else
       expect(item.send(model_association).count).to eq 1
     end
-    expect(item.send(model_association).last).to eq item_associated
+    expect(item.send(model_association)[1]).to eq item_associated
   end
 
   it "removes #{model_associated}" do
     item.send(model_association).delete(item_associated)
     if required
       expect(item.send(model_association).count).to eq 1
-      expect(item.send(model_association).first).to_not be_nil
+      expect(item.send(model_association)[0]).to_not be_nil
     else
       expect(item.send(model_association).count).to eq 0
-      expect(item.send(model_association).first).to be_nil
+      expect(item.send(model_association)[0]).to be_nil
     end
   end
 
   it "destroys dependent #{model_associated}" do
     item.destroy
     expect(item.send(model_association).count).to eq 0
-    expect(item.send(model_association).first).to be_nil
+    expect(item.send(model_association)[0]).to be_nil
   end
 end
 
@@ -235,14 +235,13 @@ RSpec.shared_examples 'pessimistic locking' do
 end
 
 
-
-RSpec.shared_examples 'selector' do |scope_action, options = {}|
+RSpec.shared_examples 'selector' do |scope_action, group_by: nil, options: {}|
   describe ".#{scope_action}" do
     let!(:item_1) { create model, options }
     let!(:item_2) { create model, options }
 
     it 'returns items' do
-      return_array = case scope_action
+      return_result = case scope_action
       when :all_records
         [item_1, item_2]
       when :ordered
@@ -254,17 +253,20 @@ RSpec.shared_examples 'selector' do |scope_action, options = {}|
       when :selected
         [item_1, item_2]
       when :grouped
-        item_1.update(name: item_2.name)
-        { item_1.name => 2 }
+        item_1.update(group_by => item_2.name)
+        { item_1.send(group_by) => 2 }
       when :having_grouped
-        [item_1, item_2]
+        { item_1.try(group_by) => 1, item_2.try(group_by) => 1 }
       when :offsetted
         [item_2]
       end
 
       result = model.send(scope_action)
-      result = result.count if scope_action == :grouped
-      expect(result).to eq return_array
+      if scope_action == :grouped || scope_action == :having_grouped
+        result = result.count
+      end
+
+      expect(result).to eq return_result
     end
   end
 end
@@ -327,7 +329,7 @@ RSpec.shared_examples 'distinct selector' do |field|
   let!(:item_4) { create model, field => 3 }
 
   it "returns unique values" do
-    expect(model.select(field).distinct.map(&field).map(&:to_i)).to eq([1, 2, 3])
+    expect(model.select(field).distinct.map(&field).map(&:to_i).sort).to eq([1, 2, 3])
   end
 end
 
