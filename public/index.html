@@ -1,0 +1,698 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="description" content="">
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Splice Engine - Ruby on Rails</title>
+<link rel="alternate" type="application/rss+xml" title="frittt.com" href="feed/index.html">
+<link href="http://fonts.googleapis.com/css?family=Raleway:700,300" rel="stylesheet"
+        type="text/css">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/prettify.css">
+<link rel="stylesheet" href="css/bootstrap-table.css">
+</head>
+<body>
+<div class="wrapper">
+<header>
+  <div class="container">
+    <h2 class="lone-header">Splice Engine - Ruby on Rails</h2>
+  </div>
+</header>
+<section>
+  <div class="container">
+    <ul class="docs-nav">
+      <li><strong>Home</strong></li>
+      <li><a href="#overview" class="cc-active">Overview</a></li>
+      <li class="separator"></li>
+      <li><strong>Performance</strong></li>
+      <li><a href="#performance" class="cc-active">Overview</a></li>
+    </ul>
+    <div class="docs-content">
+      <h2> Slice Engine</h2>
+      <h3 id="overview">Overview</h3>
+      <p> Are you listening to your customers?</p>
+
+      <div class="table-responsive">
+        <table class="table table-bordered table-striped">
+          <thead>
+            <tr>
+              <th>Action</th>
+              <th> MySQL <br/><small>Ruby 2.3.1</small> </th>
+              <th> Derby <br/><small>JRuby 9.1.5.0</small> </th>
+              <th> Splice <br/><small>JRuby 9.1.5.0</small> </th>
+              <th> Splice <br/><small>JRuby 9.1.5.0</small> </th>
+            </tr>
+          </thead>
+          <tbody>
+<!--             <tr>
+              <th class="text-nowrap" scope="row">Grid behavior</th>
+              <td>Horizontal at all times</td>
+              <td colspan="3">Collapsed to start, horizontal above breakpoints</td>
+            </tr> -->
+            <tr>
+              <th class="text-nowrap" scope="row">Create</th>
+              <td class="passed"><span>passed</span></td>
+              <td class="passed"><span>passed</span></td>
+              <td class="passed"><span>passed</span></td>
+              <td class=""><span></span></td>
+            </tr>
+            <tr>
+              <th class="text-nowrap" scope="row">Update</th>
+              <td class="passed"><span>passed</span></td>
+              <td class="passed"><span>passed</span></td>
+              <td class="passed"><span>passed</span></td>
+              <td class=""><span></span></td>
+            </tr>
+            <tr>
+              <th class="text-nowrap" scope="row">Read Only Update</th>
+              <td class="passed"><span>passed</span></td>
+              <td class="passed"><span>passed</span></td>
+              <td class="failed"><span>failed</span></td>
+              <td class=""><span></span></td>
+            </tr>
+            <tr>
+              <th class="text-nowrap" scope="row">Destroy</th>
+              <td class="passed"><span>passed</span></td>
+              <td class="passed"><span>passed</span></td>
+              <td class="failed"><span>failed</span></td>
+              <td class=""><span></span></td>
+            </tr>
+            <tr>
+              <th class="text-nowrap" scope="row">Create With</th>
+              <td class="passed"><span>passed</span></td>
+              <td class="passed"><span>passed</span></td>
+              <td class="passed"><span>passed</span></td>
+              <td class=""><span></span></td>
+            </tr>
+            <tr>
+              <th class="text-nowrap" scope="row">Validations</th>
+              <td class="passed"><span>passed</span></td>
+              <td class="passed"><span>passed</span></td>
+              <td class="passed"><span>passed</span></td>
+              <td class=""><span></span></td>
+            </tr>
+            <tr>
+              <th class="text-nowrap" scope="row">Has Many Association</th>
+              <td colspan="4"></td>
+            </tr>
+
+            <tr>
+              <th class="text-nowrap" scope="row"><small>Add</small></th>
+              <td class="passed"><span>passed</span></td>
+              <td class="passed"><span>passed</span></td>
+              <td class="passed"><span>passed</span></td>
+              <td class=""><span></span></td>
+            </tr>
+
+            <tr>
+              <th class="text-nowrap" scope="row"><small>Delete</small></th>
+              <td class="passed"><span>passed</span></td>
+              <td class="passed"><span>passed</span></td>
+              <td class="failed"><span>failed</span></td>
+              <td class=""><span></span></td>
+            </tr>
+
+            <tr>
+              <th class="text-nowrap" scope="row"><small>Destroy</small></th>
+              <td class="passed"><span>passed</span></td>
+              <td class="passed"><span>passed</span></td>
+              <td class="failed"><span>failed</span></td>
+              <td class=""><span></span></td>
+            </tr>
+
+
+            <tr>
+              <th class="text-nowrap" scope="row">Has One Association</th>
+              <td colspan="4"></td>
+            </tr>
+
+            <tr>
+              <th class="text-nowrap" scope="row"><small>Add</small></th>
+              <td class="passed"><span>passed</span></td>
+              <td class="passed"><span>passed</span></td>
+              <td class="failed"><span>failed</span></td>
+              <td class=""><span></span></td>
+            </tr>
+
+
+            <tr>
+              <th class="text-nowrap" scope="row">Polumorfic Association</th>
+              <td colspan="4"></td>
+            </tr>
+
+            <tr>
+              <th class="text-nowrap" scope="row"><small>Add</small></th>
+              <td class="passed"><span>passed</span></td>
+              <td class="passed"><span>passed</span></td>
+              <td class="failed"><span>failed</span></td>
+              <td class=""><span></span></td>
+            </tr>
+
+
+            <tr>
+              <th class="text-nowrap" scope="row">Has Many Through</th>
+              <td colspan="4"></td>
+            </tr>
+
+            <tr>
+              <th class="text-nowrap" scope="row"><small>Add</small></th>
+              <td class="passed"><span>passed</span></td>
+              <td class="passed"><span>passed</span></td>
+              <td class="passed"><span>passed</span></td>
+              <td class=""><span></span></td>
+            </tr>
+
+            <tr>
+              <th class="text-nowrap" scope="row">Has Many And Belongs To</th>
+              <td colspan="4"></td>
+            </tr>
+
+            <tr>
+              <th class="text-nowrap" scope="row"><small>Add</small></th>
+              <td class="passed"><span>passed</span></td>
+              <td class="passed"><span>passed</span></td>
+              <td class="passed"><span>passed</span></td>
+              <td class=""><span></span></td>
+            </tr>
+
+
+
+            <tr>
+              <th class="text-nowrap" scope="row"><small>Create</small></th>
+              <td class="passed"><span>passed</span></td>
+              <td class="failed"><span>failed</span></td>
+              <td class="failed"><span>failed</span></td>
+              <td class=""><span></span></td>
+            </tr>
+
+            <tr>
+              <th class="text-nowrap" scope="row"><small>Delete</small></th>
+              <td class="passed"><span>passed</span></td>
+              <td class="passed"><span>passed</span></td>
+              <td class="passed"><span>passed</span></td>
+              <td class=""><span></span></td>
+            </tr>
+
+
+
+            <tr>
+              <th class="text-nowrap" scope="row">All</th>
+              <td class="passed"><span>passed</span></td>
+              <td class="passed"><span>passed</span></td>
+              <td class="passed"><span>passed</span></td>
+              <td class=""><span></span></td>
+            </tr>
+
+            <tr>
+              <th class="text-nowrap" scope="row">All after update</th>
+              <td class="passed"><span>passed</span></td>
+              <td class="failed"><span>failed</span></td>
+              <td class="failed"><span>failed</span></td>
+              <td class=""><span></span></td>
+            </tr>
+
+            <tr>
+              <th class="text-nowrap" scope="row">Order</th>
+              <td class="passed"><span>passed</span></td>
+              <td class="passed"><span>passed</span></td>
+              <td class="passed"><span>passed</span></td>
+              <td class=""><span></span></td>
+            </tr>
+
+            <tr>
+              <th class="text-nowrap" scope="row">Reverse Order</th>
+              <td class="passed"><span>passed</span></td>
+              <td class="passed"><span>passed</span></td>
+              <td class="passed"><span>passed</span></td>
+              <td class=""><span></span></td>
+            </tr>
+
+            <tr>
+              <th class="text-nowrap" scope="row">Limit</th>
+              <td class="passed"><span>passed</span></td>
+              <td class="passed"><span>passed</span></td>
+              <td class="failed"><span>failed</span></td>
+              <td class=""><span></span></td>
+            </tr>
+
+            <tr>
+              <th class="text-nowrap" scope="row">Select</th>
+              <td class="passed"><span>passed</span></td>
+              <td class="passed"><span>passed</span></td>
+              <td class="passed"><span>passed</span></td>
+              <td class=""><span></span></td>
+            </tr>
+
+            <tr>
+              <th class="text-nowrap" scope="row">Group</th>
+              <td class="passed"><span>passed</span></td>
+              <td class="passed"><span>passed</span></td>
+              <td class="passed"><span>passed</span></td>
+              <td class=""><span></span></td>
+            </tr>
+
+            <tr>
+              <th class="text-nowrap" scope="row">Offset</th>
+              <td class="passed"><span>passed</span></td>
+              <td class="passed"><span>passed</span></td>
+              <td class="failed"><span>failed</span></td>
+              <td class=""><span></span></td>
+            </tr>
+
+            <tr>
+              <th class="text-nowrap" scope="row">Find</th>
+              <td class="passed"><span>passed</span></td>
+              <td class="passed"><span>passed</span></td>
+              <td class="passed"><span>passed</span></td>
+              <td class=""><span></span></td>
+            </tr>
+
+            <tr>
+              <th class="text-nowrap" scope="row">Find By</th>
+              <td class="passed"><span>passed</span></td>
+              <td class="passed"><span>passed</span></td>
+              <td class="passed"><span>passed</span></td>
+              <td class=""><span></span></td>
+            </tr>
+
+            <tr>
+              <th class="text-nowrap" scope="row">Find Array</th>
+              <td class="passed"><span>passed</span></td>
+              <td class="passed"><span>passed</span></td>
+              <td class="passed"><span>passed</span></td>
+              <td class=""><span></span></td>
+            </tr>
+
+
+            <tr>
+              <th class="text-nowrap" scope="row">Find in Batches</th>
+              <td class="passed"><span>passed</span></td>
+              <td class="passed"><span>passed</span></td>
+              <td class="failed"><span>failed</span></td>
+              <td class=""><span></span></td>
+            </tr>
+
+            <tr>
+              <th class="text-nowrap" scope="row">Join</th>
+              <td class="passed"><span>passed</span></td>
+              <td class="passed"><span>passed</span></td>
+              <td class="passed"><span>passed</span></td>
+              <td class=""><span></span></td>
+            </tr>
+
+            <tr>
+              <th class="text-nowrap" scope="row">Include</th>
+              <td class="passed"><span>passed</span></td>
+              <td class="passed"><span>passed</span></td>
+              <td class="passed"><span>passed</span></td>
+              <td class=""><span></span></td>
+            </tr>
+
+            <tr>
+              <th class="text-nowrap" scope="row">Distinct</th>
+              <td class="passed"><span>passed</span></td>
+              <td class="passed"><span>passed</span></td>
+              <td class="passed"><span>passed</span></td>
+              <td class=""><span></span></td>
+            </tr>
+
+            <tr>
+              <th class="text-nowrap" scope="row">Eager Load</th>
+              <td class="passed"><span>passed</span></td>
+              <td class="passed"><span>passed</span></td>
+              <td class="passed"><span>passed</span></td>
+              <td class=""><span></span></td>
+            </tr>
+
+            <tr>
+              <th class="text-nowrap" scope="row">Preload</th>
+              <td class="passed"><span>passed</span></td>
+              <td class="passed"><span>passed</span></td>
+              <td class="passed"><span>passed</span></td>
+              <td class=""><span></span></td>
+            </tr>
+
+            <tr>
+              <th class="text-nowrap" scope="row">References</th>
+              <td class="passed"><span>passed</span></td>
+              <td class="passed"><span>passed</span></td>
+              <td class="passed"><span>passed</span></td>
+              <td class=""><span></span></td>
+            </tr>
+
+            <tr>
+              <th class="text-nowrap" scope="row">Range</th>
+              <td class="passed"><span>passed</span></td>
+              <td class="passed"><span>passed</span></td>
+              <td class="passed"><span>passed</span></td>
+              <td class=""><span></span></td>
+            </tr>
+
+            <tr>
+              <th class="text-nowrap" scope="row">Subset</th>
+              <td class="passed"><span>passed</span></td>
+              <td class="passed"><span>passed</span></td>
+              <td class="passed"><span>passed</span></td>
+              <td class=""><span></span></td>
+            </tr>
+
+
+            <tr>
+              <th class="text-nowrap" scope="row">find_or_create_by</th>
+              <td colspan="4"></td>
+            </tr>
+
+            <tr>
+              <th class="text-nowrap" scope="row"><small>Create</small></th>
+              <td class="passed"><span>passed</span></td>
+              <td class="passed"><span>passed</span></td>
+              <td class="failed"><span>failed</span></td>
+              <td class=""><span></span></td>
+            </tr>
+
+            <tr>
+              <th class="text-nowrap" scope="row"><small>Find</small></th>
+              <td class="passed"><span>passed</span></td>
+              <td class="passed"><span>passed</span></td>
+              <td class="passed"><span>passed</span></td>
+              <td class=""><span></span></td>
+            </tr>
+
+            <tr>
+              <th class="text-nowrap" scope="row">find_or_create_by!</th>
+              <td colspan="4"></td>
+            </tr>
+
+            <tr>
+              <th class="text-nowrap" scope="row"><small>Create</small></th>
+              <td class="passed"><span>passed</span></td>
+              <td class="passed"><span>passed</span></td>
+              <td class="failed"><span>failed</span></td>
+              <td class=""><span></span></td>
+            </tr>
+
+            <tr>
+              <th class="text-nowrap" scope="row"><small>Find</small></th>
+              <td class="passed"><span>passed</span></td>
+              <td class="passed"><span>passed</span></td>
+              <td class="passed"><span>passed</span></td>
+              <td class=""><span></span></td>
+            </tr>
+
+            <tr>
+              <th class="text-nowrap" scope="row">find_or_initialize_by</th>
+              <td colspan="4"></td>
+            </tr>
+
+            <tr>
+              <th class="text-nowrap" scope="row"><small>Initialize</small></th>
+              <td class="passed"><span>passed</span></td>
+              <td class="passed"><span>passed</span></td>
+              <td class="failed"><span>failed</span></td>
+              <td class=""><span></span></td>
+            </tr>
+
+            <tr>
+              <th class="text-nowrap" scope="row"><small>Find</small></th>
+              <td class="passed"><span>passed</span></td>
+              <td class="passed"><span>passed</span></td>
+              <td class="passed"><span>passed</span></td>
+              <td class=""><span></span></td>
+            </tr>
+
+
+
+            <tr>
+              <th class="text-nowrap" scope="row">Select All</th>
+              <td class="passed"><span>passed</span></td>
+              <td class="passed"><span>passed</span></td>
+              <td class="passed"><span>passed</span></td>
+              <td class=""><span></span></td>
+            </tr>
+
+            <tr>
+              <th class="text-nowrap" scope="row">None relation</th>
+              <td class="passed"><span>passed</span></td>
+              <td class="passed"><span>passed</span></td>
+              <td class="passed"><span>passed</span></td>
+              <td class=""><span></span></td>
+            </tr>
+
+            <tr>
+              <th class="text-nowrap" scope="row">Pluck</th>
+              <td class="passed"><span>passed</span></td>
+              <td class="passed"><span>passed</span></td>
+              <td class="passed"><span>passed</span></td>
+              <td class=""><span></span></td>
+            </tr>
+
+            <tr>
+              <th class="text-nowrap" scope="row">Ids</th>
+              <td class="passed"><span>passed</span></td>
+              <td class="passed"><span>passed</span></td>
+              <td class="passed"><span>passed</span></td>
+              <td class=""><span></span></td>
+            </tr>
+
+
+            <tr>
+              <th class="text-nowrap" scope="row">Exists?</th>
+              <td class="passed"><span>passed</span></td>
+              <td class="passed"><span>passed</span></td>
+              <td class="failed"><span>failed</span></td>
+              <td class=""><span></span></td>
+            </tr>
+
+            <tr>
+              <th class="text-nowrap" scope="row">Minimum</th>
+              <td class="passed"><span>passed</span></td>
+              <td class="passed"><span>passed</span></td>
+              <td class="passed"><span>passed</span></td>
+              <td class=""><span></span></td>
+            </tr>
+
+            <tr>
+              <th class="text-nowrap" scope="row">Pessimistic Locking (lock)</th>
+              <td class="passed"><span>passed</span></td>
+              <td class="failed"><span>failed</span></td>
+              <td class="failed"><span>failed</span></td>
+              <td class=""><span></span></td>
+            </tr>
+
+            <tr>
+              <th class="text-nowrap" scope="row">Extend Scope</th>
+              <td class="passed"><span>passed</span></td>
+              <td class="passed"><span>passed</span></td>
+              <td class="failed"><span>failed</span></td>
+              <td class=""><span></span></td>
+            </tr>
+
+
+          </tbody>
+        </table>
+      </div>
+
+
+      <h3 id="performance">Performance</h3>
+      <p> Performance test compared to MySQL and Derby database for supported queries only.</p>
+      <p> Samples run 1000 times each.</p>
+
+      <div class="table-responsive">
+        <table class="table table-bordered table-striped">
+          <thead>
+            <tr>
+              <th>Action</th>
+              <th> MySQL <br/><small>Ruby 2.3.1</small> </th>
+              <th> Derby <br/><small>JRuby 9.1.5.0</small> </th>
+              <th> Splice <br/><small>JRuby 9.1.5.0</small> </th>
+              <th> Splice <br/><small>JRuby 9.1.5.0</small> </th>
+            </tr>
+          </thead>
+          <tbody>
+<!--             <tr>
+              <th class="text-nowrap" scope="row">Grid behavior</th>
+              <td>Horizontal at all times</td>
+              <td colspan="3">Collapsed to start, horizontal above breakpoints</td>
+            </tr> -->
+            <tr>
+              <th class="text-nowrap" scope="row">Create</th>
+              <td>0.886047</td>
+              <td>6.596056</td>
+              <td>33.390346</td>
+              <td></td>
+            </tr>
+            <tr>
+              <th class="text-nowrap" scope="row">Update</th>
+              <td>6.042646</td>
+              <td>5.787342</td>
+              <td>7.722909</td>
+              <td></td>
+            </tr>
+            <tr>
+              <th class="text-nowrap" scope="row">Where</th>
+              <td>0.349582</td>
+              <td>2.269094</td>
+              <td>20.273895</td>
+              <td></td>
+            </tr>
+            <tr>
+              <th class="text-nowrap" scope="row">Join</th>
+              <td>0.639624</td>
+              <td>3.344357</td>
+              <td>20.823067</td>
+              <td></td>
+            </tr>
+            <tr>
+              <th class="text-nowrap" scope="row">Includes</th>
+              <td>2.156809</td>
+              <td>6.703227</td>
+              <td>36.352042</td>
+              <td></td>
+            </tr>
+            <tr>
+              <th class="text-nowrap" scope="row">Group</th>
+              <td>0.312209</td>
+              <td>1.665367</td>
+              <td>5.239833</td>
+              <td></td>
+            </tr>
+            <tr>
+              <th class="text-nowrap" scope="row">Group & Having</th>
+              <td>0.285760</td>
+              <td>1.303565</td>
+              <td>5.174444</td>
+              <td></td>
+            </tr>
+            <tr>
+              <th class="text-nowrap" scope="row">Order</th>
+              <td>0.642147</td>
+              <td>1.479684</td>
+              <td>26.210900</td>
+              <td></td>
+            </tr>
+            <tr>
+              <th class="text-nowrap" scope="row">Select</th>
+              <td>0.582684</td>
+              <td>1.012709</td>
+              <td>22.941944</td>
+              <td></td>
+            </tr>
+
+
+          </tbody>
+        </table>
+
+
+      </div>
+
+
+      <h2>MySQL</h2>
+      <p> Samples run 1000 times each.</p>
+
+      <div class="table-responsive">
+        <table class="table table-bordered table-striped">
+          <thead>
+            <tr>
+              <th>Action</th>
+              <th> User </th>
+              <th> System </th>
+              <th> Total </th>
+              <th> Real </th>
+            </tr>
+          </thead>
+          <tbody>
+<!--             <tr>
+              <th class="text-nowrap" scope="row">Grid behavior</th>
+              <td>Horizontal at all times</td>
+              <td colspan="3">Collapsed to start, horizontal above breakpoints</td>
+            </tr> -->
+            <tr>
+              <th class="text-nowrap" scope="row">Create</th>
+              <td>0.800000</td>
+              <td>0.020000</td>
+              <td>0.820000</td>
+              <td>0.886047</td>
+            </tr>
+            <tr>
+              <th class="text-nowrap" scope="row">Update</th>
+              <td>1.270000</td>
+              <td>0.070000</td>
+              <td>1.340000</td>
+              <td>6.042646</td>
+            </tr>
+            <tr>
+              <th class="text-nowrap" scope="row">Where</th>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <th class="text-nowrap" scope="row">Join</th>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <th class="text-nowrap" scope="row">Includes</th>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <th class="text-nowrap" scope="row">Group</th>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <th class="text-nowrap" scope="row">Group & Having</th>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <th class="text-nowrap" scope="row">Order</th>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <th class="text-nowrap" scope="row">Select</th>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+
+
+          </tbody>
+        </table>
+
+
+      </div>
+
+
+
+
+      <pre class="prettyprint">Code</pre>
+
+</section>
+<footer>
+  <div class="">
+  </div>
+</footer>
+</div>
+<script src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/prettify/prettify.js"></script>
+<script src="js/layout.js"></script>
+</body>
+</html>
