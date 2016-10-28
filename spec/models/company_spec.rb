@@ -34,7 +34,7 @@ describe Company do
     it_behaves_like 'selector', :reverse_ordered
     it_behaves_like 'selector', :limited
     it_behaves_like 'selector', :selected
-    it_behaves_like 'selector', :grouped
+    it_behaves_like 'selector', :grouped, group_by: :name
     it_behaves_like 'selector', :offsetted
 
     it_behaves_like 'find selector'
