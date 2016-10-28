@@ -8,7 +8,7 @@ RSpec.shared_examples 'model update' do |field, value|
   before { item.update field => value }
 
   it 'is updated' do
-    expect(item.reload.send(field)).to eq value
+    expect(model.where(id: item.id)[0].send(field)).to eq value
   end
 end
 
@@ -16,7 +16,7 @@ RSpec.shared_examples 'model readonly update' do |field, value|
   before { item.update field => value }
 
   it 'is not updated' do
-    expect(item.reload.send(field)).not_to eq value
+    expect(model.where(id: item.id)[0].send(field)).not_to eq value
   end
 end
 
@@ -31,7 +31,7 @@ end
 RSpec.shared_examples 'model create_with' do |find_by_field, find_by_value, field, value|
   it 'creates with value' do
     expect{ model.create_with(field => value).find_or_create_by(find_by_field => find_by_value) }.to change(model, :count).by(1)
-    expect(model.last[find_by_field]).to eq(find_by_value)
+    expect(model.order(id: :desc)[0][find_by_field]).to eq(find_by_value)
   end
 
   it 'returns an existing model' do
@@ -61,7 +61,7 @@ RSpec.shared_examples 'belongs_to association' do |model_associated, required = 
   it "adds #{model_associated}" do
     item.send("#{model_association}=", item_associated)
     item.save
-    expect(item.reload.send(model_association)).to eq item_associated
+    expect(model.where(id: item.id)[0].send(model_association)).to eq item_associated
   end
 
   if required
@@ -85,7 +85,7 @@ RSpec.shared_examples 'has_one association' do |model_associated, required = fal
   end
 
   it "adds #{model_associated}" do
-    expect(item.reload.send(model_association)).to eq item_associated
+    expect(model.where(id: item.id)[0].send(model_association)).to eq item_associated
   end
 
   if required
@@ -108,10 +108,11 @@ RSpec.shared_examples 'has_many association' do |model_associated, required = fa
   it "adds #{model_associated}" do
     if required
       expect(item.send(model_association).count).to eq 2
+      expect(item.send(model_association)[1]).to eq item_associated
     else
       expect(item.send(model_association).count).to eq 1
+      expect(item.send(model_association)[0]).to eq item_associated
     end
-    expect(item.send(model_association)[1]).to eq item_associated
   end
 
   it "removes #{model_associated}" do
@@ -144,7 +145,7 @@ RSpec.shared_examples 'habtm association' do |model_associated, required = false
     else
       expect(item.send(model_association).count).to eq 1
     end
-    expect(item.send(model_association).last).to eq item_associated
+    expect(item.send(model_association).order(id: :desc)[0]).to eq item_associated
   end
 
   it "creates #{model_associated}" do
@@ -157,10 +158,10 @@ RSpec.shared_examples 'habtm association' do |model_associated, required = false
     item.send(model_association).delete(item_associated)
     if required
       expect(item.send(model_association).count).to eq 1
-      expect(item.send(model_association).first).to_not be_nil
+      expect(item.send(model_association)[0]).to_not be_nil
     else
       expect(item.send(model_association).count).to eq 0
-      expect(item.send(model_association).first).to be_nil
+      expect(item.send(model_association)[0]).to be_nil
     end
   end
 end
@@ -337,13 +338,16 @@ RSpec.shared_examples 'eager_load selector' do |association|
   let!(:main_item) { create model }
 
   before do
-    @sub_item1 = main_item.send(association).create!(id: nil)
-    @sub_item2 = main_item.send(association).create!(id: nil)
-    @sub_item3 = main_item.send(association).create!(id: nil)
+    main_item.send(association).create!
+    @sub_item1 = main_item.send(association).order(id: :desc)[0]
+    main_item.send(association).create!
+    @sub_item2 = main_item.send(association).order(id: :desc)[0]
+    main_item.send(association).create!
+    @sub_item3 = main_item.send(association).order(id: :desc)[0]
   end
 
   it "loads the associated items" do
-    expect(model.eager_load(association).where(id: main_item.id).first.send(association).to_a).to eq([@sub_item1, @sub_item2, @sub_item3])
+    expect(model.eager_load(association).where(id: main_item.id)[0].send(association).to_a).to eq([@sub_item1, @sub_item2, @sub_item3])
   end
 end
 
@@ -376,13 +380,16 @@ RSpec.shared_examples 'preload selector' do |association|
   let!(:main_item) { create model }
 
   before do
-    @sub_item1 = main_item.send(association).create!(id: nil)
-    @sub_item2 = main_item.send(association).create!(id: nil)
-    @sub_item3 = main_item.send(association).create!(id: nil)
+    main_item.send(association).create!
+    @sub_item1 = main_item.send(association).order(id: :desc)[0]
+    main_item.send(association).create!
+    @sub_item2 = main_item.send(association).order(id: :desc)[0]
+    main_item.send(association).create!
+    @sub_item3 = main_item.send(association).order(id: :desc)[0]
   end
 
   it "loads the associated items" do
-    expect(model.preload(association).where(id: main_item.id).first.send(association).to_a).to eq([@sub_item1, @sub_item2, @sub_item3])
+    expect(model.preload(association).where(id: main_item.id)[0].send(association).to_a).to eq([@sub_item1, @sub_item2, @sub_item3])
   end
 end
 
@@ -390,13 +397,16 @@ RSpec.shared_examples 'references selector' do |association|
   let!(:main_item) { create model }
 
   before do
-    @sub_item1 = main_item.send(association).create!(id: nil, created_at: 1.week.ago)
-    @sub_item2 = main_item.send(association).create!(id: nil, created_at: 2.weeks.ago)
-    @sub_item3 = main_item.send(association).create!(id: nil, created_at: 3.weeks.ago)
+    main_item.send(association).create!(created_at: 1.week.ago)
+    @sub_item1 = main_item.send(association).order(id: :desc)[0]
+    main_item.send(association).create!(created_at: 2.weeks.ago)
+    @sub_item2 = main_item.send(association).order(id: :desc)[0]
+    main_item.send(association).create!(created_at: 3.weeks.ago)
+    @sub_item3 = main_item.send(association).order(id: :desc)[0]
   end
 
   it "loads the associated items with an SQL query fragment" do
-    expect(model.includes(association).where("#{association}.created_at >= ?", 16.days.ago).references(association).first.send(association)).to eq([@sub_item1, @sub_item2])
+    expect(model.includes(association).where("#{association}.created_at >= ?", 16.days.ago).references(association)[0].send(association)).to eq([@sub_item1, @sub_item2])
   end
 end
 
@@ -475,9 +485,8 @@ end
 
 RSpec.shared_examples 'select_all selector' do
   let!(:item) { create model }
-
   it "returns an array of hashes with results from the database" do
-    expect(model.connection.select_all("SELECT id, created_at, updated_at FROM #{model.table_name} WHERE id = #{item.id}").to_a).to eq([{"id" => item.id, "created_at" => item.created_at.to_s(:db), "updated_at" => item.updated_at.to_s(:db)}])
+    expect(model.connection.select_all("SELECT id, created_at, updated_at FROM #{model.table_name} WHERE id = #{item.id}").to_a).to eq([{"id" => item.id, "created_at" => item.created_at.strftime('%Y-%m-%d %H:%M:%S.%3N'), "updated_at" => item.updated_at.strftime('%Y-%m-%d %H:%M:%S.%3N')}])
   end
 end
 
