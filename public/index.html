@@ -604,7 +604,7 @@
             </tr>
           </thead>
           <tbody>
-<!--             <tr>
+            <!-- <tr>
               <th class="text-nowrap" scope="row">Grid behavior</th>
               <td>Horizontal at all times</td>
               <td colspan="3">Collapsed to start, horizontal above breakpoints</td>
@@ -625,52 +625,52 @@
             </tr>
             <tr>
               <th class="text-nowrap" scope="row">Where</th>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
+              <td>0.330000</td>
+              <td>0.010000</td>
+              <td>0.340000</td>
+              <td>0.349582</td>
             </tr>
             <tr>
               <th class="text-nowrap" scope="row">Join</th>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
+              <td>0.590000</td>
+              <td>0.030000</td>
+              <td>0.620000</td>
+              <td>0.639624</td>
             </tr>
             <tr>
               <th class="text-nowrap" scope="row">Includes</th>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
+              <td>0.290000</td>
+              <td>0.010000</td>
+              <td>0.30000</td>
+              <td>0.312209</td>
             </tr>
             <tr>
               <th class="text-nowrap" scope="row">Group</th>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
+              <td>0.290000</td>
+              <td>0.010000</td>
+              <td>0.300000</td>
+              <td>0.312209</td>
             </tr>
             <tr>
               <th class="text-nowrap" scope="row">Group & Having</th>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
+              <td>0.270000</td>
+              <td>0.010000</td>
+              <td>0.280000</td>
+              <td>0.285760</td>
             </tr>
             <tr>
               <th class="text-nowrap" scope="row">Order</th>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
+              <td>0.580000</td>
+              <td>0.030000</td>
+              <td>0.610000</td>
+              <td>0.642147</td>
             </tr>
             <tr>
               <th class="text-nowrap" scope="row">Select</th>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
+              <td>0.540000</td>
+              <td>0.020000</td>
+              <td>0.560000</td>
+              <td>0.582684</td>
             </tr>
 
 
@@ -680,10 +680,177 @@
 
       </div>
 
+      <h2>SPLICE - JRUBY 9.1.5.0</h2>
+      <p> Samples run 1000 times each.</p>
+
+      <div class="table-responsive">
+        <table class="table table-bordered table-striped">
+          <thead>
+            <tr>
+              <th>Action</th>
+              <th> User </th>
+              <th> System </th>
+              <th> Total </th>
+              <th> Real </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th class="text-nowrap" scope="row">Create</th>
+              <td>24.610000</td>
+              <td>0.270000</td>
+              <td>24.880000</td>
+              <td>33.390346</td>
+            </tr>
+            <tr>
+              <th class="text-nowrap" scope="row">Update</th>
+              <td>9.850000</td>
+              <td>0.080000</td>
+              <td>9.930000</td>
+              <td>7.722909</td>
+            </tr>
+            <tr>
+              <th class="text-nowrap" scope="row">Where</th>
+              <td>8.310000</td>
+              <td>0.120000</td>
+              <td>8.430000</td>
+              <td>20.273895</td>
+            </tr>
+            <tr>
+              <th class="text-nowrap" scope="row">Join</th>
+              <td>6.630000</td>
+              <td>0.100000</td>
+              <td>6.730000</td>
+              <td>20.823067</td>
+            </tr>
+            <tr>
+              <th class="text-nowrap" scope="row">Includes</th>
+              <td>26.430000</td>
+              <td>0.180000</td>
+              <td>26.610000</td>
+              <td>36.352042</td>
+            </tr>
+            <tr>
+              <th class="text-nowrap" scope="row">Group</th>
+              <td>4.950000</td>
+              <td>0.090000</td>
+              <td>5.040000</td>
+              <td>5.239833</td>
+            </tr>
+            <tr>
+              <th class="text-nowrap" scope="row">Group & Having</th>
+              <td>3.680000</td>
+              <td>0.100000</td>
+              <td>3.780000</td>
+              <td>5.174444</td>
+            </tr>
+            <tr>
+              <th class="text-nowrap" scope="row">Order</th>
+              <td>6.370000</td>
+              <td>0.080000</td>
+              <td>6.450000</td>
+              <td>26.210900</td>
+            </tr>
+            <tr>
+              <th class="text-nowrap" scope="row">Select</th>
+              <td>5.470000</td>
+              <td>0.060000</td>
+              <td>5.530000</td>
+              <td>22.941944</td>
+            </tr>
 
 
+          </tbody>
+        </table>
 
-      <pre class="prettyprint">Code</pre>
+
+      </div>
+
+      <h2>Derby - JRUBY 9.1.5.0</h2>
+      <p> Samples run 1000 times each.</p>
+
+      <div class="table-responsive">
+        <table class="table table-bordered table-striped">
+          <thead>
+            <tr>
+              <th>Action</th>
+              <th> User </th>
+              <th> System </th>
+              <th> Total </th>
+              <th> Real </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th class="text-nowrap" scope="row">Create</th>
+              <td>19.840000</td>
+              <td>0.140000</td>
+              <td>19.980000</td>
+              <td>6.596056</td>
+            </tr>
+            <tr>
+              <th class="text-nowrap" scope="row">Update</th>
+              <td>11.170000</td>
+              <td>0.070000</td>
+              <td>11.240000</td>
+              <td>5.787342</td>
+            </tr>
+            <tr>
+              <th class="text-nowrap" scope="row">Where</th>
+              <td>6.960000</td>
+              <td>0.010000</td>
+              <td>6.970000</td>
+              <td>2.269094</td>
+            </tr>
+            <tr>
+              <th class="text-nowrap" scope="row">Join</th>
+              <td>9.190000</td>
+              <td>0.050000</td>
+              <td>9.240000</td>
+              <td>3.344357</td>
+            </tr>
+            <tr>
+              <th class="text-nowrap" scope="row">Includes</th>
+              <td>16.660000</td>
+              <td>0.080000</td>
+              <td>16.740000</td>
+              <td>6.703227</td>
+            </tr>
+            <tr>
+              <th class="text-nowrap" scope="row">Group</th>
+              <td>5.520000</td>
+              <td>0.010000</td>
+              <td>5.530000</td>
+              <td>1.665367</td>
+            </tr>
+            <tr>
+              <th class="text-nowrap" scope="row">Group & Having</th>
+              <td>4.060000</td>
+              <td>0.010000</td>
+              <td>4.070000</td>
+              <td>1.303565</td>
+            </tr>
+            <tr>
+              <th class="text-nowrap" scope="row">Order</th>
+              <td>3.880000</td>
+              <td>0.000000</td>
+              <td>3.880000</td>
+              <td>1.479684</td>
+            </tr>
+            <tr>
+              <th class="text-nowrap" scope="row">Select</th>
+              <td>2.100000</td>
+              <td>0.010000</td>
+              <td>2.110000</td>
+              <td>1.012709</td>
+            </tr>
+
+
+          </tbody>
+        </table>
+
+
+      </div>
 
 </section>
 <footer>
