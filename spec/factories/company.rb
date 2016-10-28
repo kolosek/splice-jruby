@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :company do
-    id nil
+    # id nil
     sequence(:name) { |n| "company-#{n}" }
   end
 end
