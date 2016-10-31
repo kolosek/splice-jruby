@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161025101445) do
+ActiveRecord::Schema.define(version: 20161026132222) do
 
   create_table "addresses", force: :cascade do |t|
     t.integer  "addressable_id",   limit: 10
@@ -44,6 +44,24 @@ ActiveRecord::Schema.define(version: 20161025101445) do
     t.integer "tag_id",     limit: 10, null: false
   end
 
+  create_table "settings", force: :cascade do |t|
+    t.integer  "user_id",     limit: 10
+    t.integer  "number",      limit: 10,                                 default: 0
+    t.string   "header",      limit: 255,                                default: "''"
+    t.text     "description", limit: 2147483647
+    t.float    "gravity",     limit: 23,                                 default: 9.807
+    t.decimal  "velocity",                       precision: 5, scale: 2, default: 0.0
+    t.boolean  "enabled",     limit: 1,                                  default: true
+    t.binary   "image",       limit: 2147483647
+    t.date     "birthday",    limit: 10,                                 default: '2016-10-31'
+    t.time     "birthtime",   limit: 8,                                  default: '2000-01-01 09:12:17'
+    t.datetime "deadline",    limit: 29,                                 default: '2016-10-31 09:12:17'
+    t.datetime "created_at",  limit: 29,                                                                 null: false
+    t.datetime "updated_at",  limit: 29,                                                                 null: false
+  end
+
+  add_index "settings", ["user_id"], name: "sql161031101217880"
+
   create_table "tags", force: :cascade do |t|
     t.string   "name",       limit: 255
     t.datetime "created_at", limit: 29,  null: false
@@ -67,4 +85,5 @@ ActiveRecord::Schema.define(version: 20161025101445) do
     t.integer  "credit",     limit: 10,  default: 0
   end
 
+  add_foreign_key "settings", "users"
 end
