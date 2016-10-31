@@ -23,7 +23,6 @@ describe Company do
 
   describe 'Associations' do
     it_behaves_like 'has_many association', User
-    it_behaves_like 'has_one association', Address
     it_behaves_like 'polymorphic association', :address, Address
     it_behaves_like 'has_many through association', Profile, User
   end
