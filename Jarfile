@@ -1,1 +1,1 @@
-local 'lib/db-client-3.0.0.10-SNAPSHOT.jar'
+local 'lib/db-client-2.0.1.34-SNAPSHOT.jar'
