@@ -1,37 +1,41 @@
-== README
-
-
-# Install pre-requirements
-
-If you dont have rvm setup make sure you go through the steps to setup rvm in the following website:
-http://installrails.com
-
-It is very important that the versions of the below outline products should have the proper major version.
+# Prerequirements
 
 * Ruby version
   2.3.1
 
-* Jruby Version
+* Rails Version
+  4.2.1
+
+* RVM
+
+  If no rvm is installed, install it with:
+
+  `\curl -sSL https://get.rvm.io | bash -s stable`
+
+  More information: https://rvm.io/rvm/install
+
+
+* JRuby Version
   9.1.5.0
 
   If JRuby is not installed, go to app root directory and run in console:
 
   `rvm use jruby-9.1.5.0 --install`
 
-* Rails Version
-  4.2.1
+
 
 * Install all the gems
 
   `bundle install`
 
 * System dependencies
+
   Just run the app. No additional changes needed.
 
   The jar file is located in `/lib` directory
 
   If making some changes copy and overwrite new modified file:
-  ~/spliceengine/db-client/target/db-client-3.0.0.10-SNAPSHOT.jar to the /lib directory
+  `~/spliceengine/db-client/target/db-client-3.0.0.10-SNAPSHOT.jar` to the `/lib` directory
 
 
 # Setting up a database
@@ -49,18 +53,26 @@ It is very important that the versions of the below outline products should have
 
   `cd ~/spliceengine/`
 
-  `./start-splice-cluster` (only on the first time, run `./start-splice-cluster -b` every other time)
+  `./start-splice-cluster` (only on the first time, and run `./start-splice-cluster -b`on every other time)
 
   `./start-splice-cluster -h`, for any addtional information
+
+#### Possible issues:
+
+  If there are issues with running a splice cluster, you might need to add next line into your `~/.bashrc` file:
+
+  `export LD_LIBRARY_PATH=/usr/local/lib`
 
 
 # Run tests
 
   `bundle exec rspec spec/`
 
-# Additional information:
+# Switching between Ruby and JRuby
 
-  If you want to run the code against `ruby` code and test the app with it, open file `.ruby-version` and change it to `ruby-2.3.1`, or any other ruby version
+  In this app **Ruby**  is used for *MySQL* and **JRuby** for *Splice/Derby*
+
+  If you want to run the code against `ruby` code and test the app with it, open file `.ruby-version` and change any text in it to `ruby-2.3.1`, or any other ruby version
 
   The database settings for `ruby` is in `database_ruby.yml`. No need to replace `database.yml`, just modify the `database_ruby.yml` file with your settings.
 
