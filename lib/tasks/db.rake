@@ -39,7 +39,7 @@ namespace :db do
 
 
     task :destroy_all => :environment do
-      ['development'].each do |environment|
+      ['development', 'test'].each do |environment|
         db_config = Rails.configuration.database_configuration[environment].dup
         schema_name = db_config['schema']
 
