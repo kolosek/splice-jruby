@@ -1499,6 +1499,8 @@ end
       <h4>FOR UPDATE issue (Both Splice and Derby)</h4>
       <p>
         For locking the tables is used command "FOR UPDATE", which is not supported by Derby.
+        <br/>
+        SELECT COUNT(*) FROM "COMPANIES" WHERE "COMPANIES"."ID" = ? FOR UPDATE
       </p>
 
       <h4>Selecting all after updating a record</h4>
