@@ -201,7 +201,7 @@ RSpec.shared_examples 'polymorphic association' do |model_association, *models_a
 end
 
 RSpec.shared_examples 'join and include query' do |model_associated|
-  let (:item) { create model }
+  let! (:item) { create model }
   let (:item_associated) { create model_associated }
   let (:model_association) { model_associated.model_name.plural }
 
