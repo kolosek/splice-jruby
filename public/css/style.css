@@ -540,6 +540,104 @@ input:focus {
 
 }
 
+.fixed-label{
+    background: #01b701;
+    color: white;
+    padding: 4px;
+    border-radius: 4px;
+}
+
+
+.fixed-test a {
+    background: #01b701;
+    color: white;
+    padding: 4px;
+    border-radius: 4px;
+    text-decoration: none;
+
+}
+
+.fixed-test a:visited {
+    background: #01b701;
+    color: white;
+    padding: 4px;
+    border-radius: 4px;
+    text-decoration: none;
+}
+
+.fixed-test a:link  {
+    background: #01b701;
+    color: white;
+    padding: 4px;
+    border-radius: 4px;
+    text-decoration: none;
+
+}
+
+.fixed-test a:hover {
+    background: #00EE00;
+    color: white;
+    padding: 4px;
+    border-radius: 4px;
+    text-decoration: none;
+
+}
+
+
+.progress-label{
+    background: #ff9102;
+    color: white;
+    padding: 4px;
+    border-radius: 4px;
+}
+
+.progress span {
+    background: #ff9102;
+    color: white;
+    padding: 4px;
+    border-radius: 4px;
+    text-decoration: none;
+
+}
+
+
+.progress a {
+    background: #ff9102;
+    color: white;
+    padding: 4px;
+    border-radius: 4px;
+    text-decoration: none;
+
+}
+
+.progress a:visited {
+    background: #ff9102;
+    color: white;
+    padding: 4px;
+    border-radius: 4px;
+    text-decoration: none;
+}
+
+.progress a:link  {
+    background: #ff9102;
+    color: white;
+    padding: 4px;
+    border-radius: 4px;
+    text-decoration: none;
+
+}
+
+.progress a:hover {
+    background: #ff9102;
+    color: white;
+    padding: 4px;
+    border-radius: 4px;
+    text-decoration: none;
+
+}
+
+
+
 .collapse {
     background: #FFF7E5;
 }
