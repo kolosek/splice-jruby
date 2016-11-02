@@ -87,9 +87,9 @@
               <th class="text-nowrap" scope="row">Create With</th>
               <td class="passed"><span>passed</span></td>
               <td class="passed"><span>passed</span></td>
-              <td class="failed">
+              <td class="fixed-test">
                 <a class="" data-toggle="collapse" href="#create_with_splice">
-                  failed
+                  fixed
                 </a>
               </td>
             </tr>
@@ -211,9 +211,9 @@ Failure/Error: expect(item.send(model_association).count).to eq 1
               <th class="text-nowrap" scope="row"><small>Delete</small></th>
               <td class="passed"><span>passed</span></td>
               <td class="passed"><span>passed</span></td>
-              <td class="failed">
+              <td class="progress">
                 <a class="" data-toggle="collapse" href="#has_many_association_delete_splice">
-                  failed
+                  progress
                 </a>
               </td>
             </tr>
@@ -254,9 +254,9 @@ Failure/Error: item.send(model_association).delete(item_associated)
               <th class="text-nowrap" scope="row"><small>Destroy</small></th>
               <td class="passed"><span>passed</span></td>
               <td class="passed"><span>passed</span></td>
-              <td class="failed">
+              <td class="progress">
                 <a class="" data-toggle="collapse" href="#has_many_association_destroy_splice">
-                  failed
+                  progress
                 </a>
               </td>
             </tr>
@@ -307,9 +307,9 @@ Failure/Error: item.destroy
                   failed
                 </a>
               </td>
-              <td class="failed">
+              <td class="progress">
                 <a class="" data-toggle="collapse" href="#has_one_association_splice">
-                  failed
+                  progress
                 </a>
               </td>
             </tr>
@@ -482,9 +482,9 @@ Shared Example Group: "belongs_to association" called from ./spec/models/user_sp
               <th class="text-nowrap" scope="row"><small>Add</small></th>
               <td class="passed"><span>passed</span></td>
               <td class="passed"><span>passed</span></td>
-              <td class="failed">
+              <td class="fixed-test">
                 <a class="" data-toggle="collapse" href="#polumorfic_association_add_splice">
-                  failed
+                  fixed
                 </a>
               </td>
             </tr>
@@ -536,9 +536,9 @@ Shared Example Group: "belongs_to association" called from ./spec/models/user_sp
               <th class="text-nowrap" scope="row"><small>Delete</small></th>
               <td class="passed"><span>passed</span></td>
               <td class="passed"><span>passed</span></td>
-              <td class="failed">
+              <td class="fixed-test">
                 <a class="" data-toggle="collapse" href="#has_many_through_association_delete_splice">
-                  failed
+                  fixed
                 </a>
               </td>
             </tr>
@@ -677,7 +677,7 @@ Shared Example Group: "habtm association" called from ./spec/models/profile_spec
               <th class="text-nowrap" scope="row">All</th>
               <td class="passed"><span>passed</span></td>
               <td class="passed"><span>passed</span></td>
-              <td class="passed"><span>passed</span></td>
+              <td class="progress"><span>progress</span></td>
             </tr>
 
             <tr>
@@ -742,9 +742,9 @@ Failure/Error: expect(model.where(id: item_2.id)[0].send(field)).to eq item_2.se
               <th class="text-nowrap" scope="row">Limit</th>
               <td class="passed"><span>passed</span></td>
               <td class="passed"><span>passed</span></td>
-              <td class="failed">
+              <td class="fixed-test">
                 <a class="" data-toggle="collapse" href="#limit_splice">
-                  failed
+                  fixed
                 </a>
               </td>
             </tr>
@@ -796,9 +796,9 @@ Failure/Error: expect(model.where(id: item_2.id)[0].send(field)).to eq item_2.se
               <th class="text-nowrap" scope="row">Offset</th>
               <td class="passed"><span>passed</span></td>
               <td class="passed"><span>passed</span></td>
-              <td class="failed">
+              <td class="fixed-test">
                 <a class="" data-toggle="collapse" href="#offset_splice">
-                  failed
+                  fixed
                 </a>
               </td>
             </tr>
@@ -835,9 +835,9 @@ Failure/Error: expect(model.where(id: item_2.id)[0].send(field)).to eq item_2.se
               <th class="text-nowrap" scope="row">Find</th>
               <td class="passed"><span>passed</span></td>
               <td class="passed"><span>passed</span></td>
-              <td class="failed">
+              <td class="fixed-test">
                 <a class="" data-toggle="collapse" href="#find_splice">
-                  failed
+                  fixed
                 </a>
               </td>
             </tr>
@@ -874,9 +874,9 @@ Shared Example Group: "find selector" called from ./spec/models/company_spec.rb:
               <th class="text-nowrap" scope="row">Find By</th>
               <td class="passed"><span>passed</span></td>
               <td class="passed"><span>passed</span></td>
-                            <td class="failed">
+                            <td class="fixed-test">
                 <a class="" data-toggle="collapse" href="#find_by_splice">
-                  failed
+                  fixed
                 </a>
               </td>
             </tr>
@@ -923,9 +923,9 @@ Shared Example Group: "find_by selector" called from ./spec/models/company_spec.
               <th class="text-nowrap" scope="row">Find in Batches</th>
               <td class="passed"><span>passed</span></td>
               <td class="passed"><span>passed</span></td>
-              <td class="failed">
+              <td class="fixed-test">
                 <a class="" data-toggle="collapse" href="#find_in_batches_splice">
-                  failed
+                  fixed
                 </a>
               </td>
             </tr>
@@ -1060,9 +1060,9 @@ Shared Example Group: "join and include query" called from ./spec/models/company
               <th class="text-nowrap" scope="row"><small>Create</small></th>
               <td class="passed"><span>passed</span></td>
               <td class="passed"><span>passed</span></td>
-              <td class="failed">
+              <td class="fixed-test">
                 <a class="" data-toggle="collapse" href="#find_or_create_by_splice">
-                  failed
+                  fixed
                 </a>
               </td>
             </tr>
@@ -1111,9 +1111,9 @@ Shared Example Group: "find_or_create_by selector" called from ./spec/models/com
               <th class="text-nowrap" scope="row"><small>Create</small></th>
               <td class="passed"><span>passed</span></td>
               <td class="passed"><span>passed</span></td>
-              <td class="failed">
+              <td class="fixed-test">
                 <a class="" data-toggle="collapse" href="#find_or_create_by_2_splice">
-                  failed
+                  fixed
                 </a>
               </td>
             </tr>
@@ -1163,9 +1163,9 @@ Shared Example Group: "find_or_create_by! selector" called from ./spec/models/co
               <th class="text-nowrap" scope="row"><small>Initialize</small></th>
               <td class="passed"><span>passed</span></td>
               <td class="passed"><span>passed</span></td>
-              <td class="failed">
+              <td class="fixed-test">
                 <a class="" data-toggle="collapse" href="#find_or_initialize_by_splice">
-                  failed
+                  fixed
                 </a>
               </td>
             </tr>
@@ -1242,9 +1242,9 @@ Shared Example Group: "find_or_initialize_by selector" called from ./spec/models
               <th class="text-nowrap" scope="row">Exists?</th>
               <td class="passed"><span>passed</span></td>
               <td class="passed"><span>passed</span></td>
-              <td class="failed">
+              <td class="progress">
                 <a class="" data-toggle="collapse" href="#exists_splice">
-                  failed
+                  progress
                 </a>
               </td>
             </tr>
@@ -1405,9 +1405,9 @@ Shared Example Group: "extending scope" called from ./spec/models/company_spec.r
               <th class="text-nowrap" scope="row">Average</th>
               <td class="passed"><span>passed</span></td>
               <td class="passed"><span>passed</span></td>
-              <td class="failed">
+              <td class="fixed-test">
                 <a class="" data-toggle="collapse" href="#average_splice">
-                  failed
+                  fixed
                 </a>
               </td>
             </tr>
@@ -1457,21 +1457,21 @@ ActiveRecord::StatementInvalid:
       </div>
 
       <h3 id="issues">Issues</h3>
-      <h4>LIMIT issue</h4>
+      <h4>LIMIT issue</h4> <span class="fixed-label">Fixed</span>
       <p>
         JDBC adapter for splice reports an error when using LIMIT.
         <br/>
         Compared to derby adapter, the LIMIT command is being translated to: FETCH FIRST 1 ROWS ONLY, instead of LIMIT 1
       </p>
 
-      <h4>OFFSET issue</h4>
+      <h4>OFFSET issue</h4> <span class="fixed-label">Fixed</span>
       <p>
         JDBC adapter for splice reports an error when using OFFSET.
         <br/>
         The OFFSET is being called by the adapter like 'OFFSET 4', instead of 'OFFSET 4 ROWS'
       </p>
 
-      <h4>ID issue</h4>
+      <h4>ID issue</h4><span class="progress-label">In Process</span>
       <p>
         The ID is not properly created. Newly created object returns ID=0 instead of the actual ID.
         <br/>
@@ -1489,6 +1489,8 @@ def _create_record(attribute_names = self.attribute_names)
   id
 end
         </pre>
+
+
       </p>
 
       <h4>Has Many and Belongs To issue</h4>
@@ -1509,6 +1511,21 @@ end
         <br/>
         But, once an individual record is updated, selecting all records from a database table that contains the updated record, will return all the records like no previous update was made, even-though when retreving the actual updated record, it will retreve the new updated values.
         <br/>
+      </p>
+
+      <h4>Extend Scope issue</h4>
+      <p>
+        When extending the scope, derby generates:
+        <br/>
+        <pre class="prettyprint">
+        SELECT  "COMPANIES".* FROM "COMPANIES" OFFSET 4 ROWS FETCH FIRST 4 ROWS ONLY
+        </pre>
+        For splice it generates:
+        <br/>
+        <pre class="prettyprint">
+        SELECT  companies.* FROM companies FETCH FIRST 4 ROWS ONLY OFFSET 4 ROWS
+        </pre>
+        This is a Rails issue.
       </p>
 
 
