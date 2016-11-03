@@ -4,6 +4,8 @@ require 'database_cleaner'
 module SpliceBenchmarks
   include Benchmark
   RUN_CIRCLE = 1000
+  THREAD_COUNT = 4
+  THREAD_SAMPLE_COUNT = 1000
 
   def self.profile
     DatabaseCleaner.strategy = :transaction
@@ -74,6 +76,27 @@ module SpliceBenchmarks
       # 8.times {|i| Company.create!(name: "Company #{i}") }
       # x.report('offset: ') { RUN_CIRCLE.times {|i| Company.offset(4).to_a } }
       # DatabaseCleaner.clean
+    end
+    DatabaseCleaner.clean
+  end
+
+  def self.threads
+    DatabaseCleaner.strategy = :transaction
+    DatabaseCleaner.start
+
+    Benchmark.benchmark(CAPTION, 20, FORMAT) do |x|
+      x.report('Threads: ') {
+        @threads = []
+        THREAD_COUNT.times.each { |i|
+          @threads << Thread.new {
+            THREAD_SAMPLE_COUNT.times {
+              # Company.limit(0)
+            }
+          }
+        }
+
+        @threads.map(&:join)
+      }
     end
     DatabaseCleaner.clean
   end
