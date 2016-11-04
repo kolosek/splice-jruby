@@ -211,9 +211,9 @@ Failure/Error: expect(item.send(model_association).count).to eq 1
               <th class="text-nowrap" scope="row"><small>Delete</small></th>
               <td class="passed"><span>passed</span></td>
               <td class="passed"><span>passed</span></td>
-              <td class="progress">
+              <td class="fixed-test">
                 <a class="" data-toggle="collapse" href="#has_many_association_delete_splice">
-                  progress
+                  fixed
                 </a>
               </td>
             </tr>
@@ -254,9 +254,9 @@ Failure/Error: item.send(model_association).delete(item_associated)
               <th class="text-nowrap" scope="row"><small>Destroy</small></th>
               <td class="passed"><span>passed</span></td>
               <td class="passed"><span>passed</span></td>
-              <td class="progress">
+              <td class="fixed-test">
                 <a class="" data-toggle="collapse" href="#has_many_association_destroy_splice">
-                  progress
+                  fixed
                 </a>
               </td>
             </tr>
@@ -377,14 +377,14 @@ Shared Example Group: "has_one association" called from ./spec/models/user_spec.
             <tr>
               <th class="text-nowrap" scope="row"><small>Add</small></th>
               <td class="passed"><span>passed</span></td>
-              <td class="failed">
+              <td class="fixed-test">
                 <a class="" data-toggle="collapse" href="#belongs_to_association_derby">
-                  failed
+                  fixed
                 </a>
               </td>
-              <td class="failed">
+              <td class="fixed-test">
                 <a class="" data-toggle="collapse" href="#belongs_to_association_splice">
-                  failed
+                  fixed
                 </a>
               </td>
             </tr>
@@ -677,7 +677,7 @@ Shared Example Group: "habtm association" called from ./spec/models/profile_spec
               <th class="text-nowrap" scope="row">All</th>
               <td class="passed"><span>passed</span></td>
               <td class="passed"><span>passed</span></td>
-              <td class="progress"><span>progress</span></td>
+              <td class="passed"><span>passed</span></td>
             </tr>
 
             <tr>
@@ -1242,9 +1242,9 @@ Shared Example Group: "find_or_initialize_by selector" called from ./spec/models
               <th class="text-nowrap" scope="row">Exists?</th>
               <td class="passed"><span>passed</span></td>
               <td class="passed"><span>passed</span></td>
-              <td class="progress">
+              <td class="fixed-test">
                 <a class="" data-toggle="collapse" href="#exists_splice">
-                  progress
+                  fixed
                 </a>
               </td>
             </tr>
@@ -1471,7 +1471,7 @@ ActiveRecord::StatementInvalid:
         The OFFSET is being called by the adapter like 'OFFSET 4', instead of 'OFFSET 4 ROWS'
       </p>
 
-      <h4>ID issue</h4><span class="progress-label">In Process</span>
+      <h4>ID issue</h4><span class="fixed-label">Fixed (possibility to re-check later on)</span>
       <p>
         The ID is not properly created. Newly created object returns ID=0 instead of the actual ID.
         <br/>
