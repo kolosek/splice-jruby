@@ -6,6 +6,7 @@ Rails.application.routes.draw do
       get :method_create
       get :method_update
       get :method_where
+      get :method_limit
     end
   end
 end
