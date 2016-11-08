@@ -497,7 +497,7 @@ end
 RSpec.shared_examples 'select_all selector' do
   let!(:item) { create model }
   it "returns an array of hashes with results from the database" do
-    expect(model.connection.select_all("SELECT id, created_at, updated_at FROM #{model.table_name} WHERE id = #{item.id}").to_a).to eq([{"id" => item.id, "created_at" => item.created_at.strftime('%Y-%m-%d %H:%M:%S.%3N'), "updated_at" => item.updated_at.strftime('%Y-%m-%d %H:%M:%S.%3N')}])
+    expect(model.connection.select_all("SELECT * FROM #{model.table_name} WHERE id = #{item.id}").to_a[0].slice('id', 'name', 'description')).to eq({"id" => item.id, "name" => item.name, "description" => item.description})
   end
 end
 
