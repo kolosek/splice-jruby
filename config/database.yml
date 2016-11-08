@@ -1,6 +1,6 @@
 default: &default
   adapter: postgresql
-  # adapter: jdbc
+  # adapter: jdbcderby
   # database: splicedb
   # username: splice
   # password: admin
@@ -12,12 +12,9 @@ default: &default
 
 development:
   <<: *default
-  database: jruby_splice_development
 
 test:
   <<: *default
-  database: jruby_splice_test
 
 production:
   <<: *default
-  database: jruby_splice_production
