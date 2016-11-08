@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
 <meta charset="utf-8">
@@ -30,6 +30,7 @@
       <li><a href="#overview" class="cc-active">Overview</a></li>
       <li class="separator"></li>
       <li><strong>Performance</strong></li>
+      <li><a href="#real_world_performance" class="cc-active">Real World Performance</a></li>
       <li><a href="#performance" class="cc-active">Overview</a></li>
     </ul>
 
@@ -1611,14 +1612,117 @@ ActiveRecord::JDBCError: java.sql.SQLSyntaxErrorException: TYPE 'PRIMARY_KEY' do
       </p>
 
 
+      <h3 id="real_world_performance">Real World Performance</h3>
+      <p> Tests are run on puma server with 16 threads and 1 worker. Pool size is 1000 (except for create where the pool size is 10)</p>
+      <p> Testing was done using 10.000 requests (1000 requests per 1000 threads in 10.000 requests ) and taken a mean number</p>
+
+      <p> Each test for JRuby is run up to 10 times (due to JRuby optimization process)</p>
+
+
+      <h2>SPLICE / MYSQL / DERBY</h2>
+
+      <div class="table-responsive">
+        <table class="table table-bordered table-striped">
+          <thead>
+            <tr>
+              <th>Action ([#/sec])</th>
+              <th> MySQL <br/><small>Ruby 2.3.1</small> </th>
+              <th> Derby <br/><small>JRuby 9.1.5.0</small> </th>
+              <th> Splice 2<br/><small>JRuby 9.1.5.0</small> </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th class="text-nowrap" scope="row">Create</th>
+              <td colspan="3">Create (pool:10, thread 10)</td>
+            </tr>
+
+             <tr>
+              <th class="text-nowrap" scope="row"><small>Requests per second</small></th>
+
+              <td>12.72</td>
+              <td>12.67</td>
+              <td>26.01</td>
+            </tr>
+
+            <tr>
+              <th class="text-nowrap" scope="row"><small>Time taken for tests</small></th>
+
+              <td>785.867 seconds</td>
+              <td>789.497 seconds</td>
+              <td>384.461 seconds</td>
+            </tr>
 
 
 
 
+            <tr>
+              <th class="text-nowrap" scope="row">Update</th>
+              <td colspan="3">
+            </tr>
+
+           <tr>
+              <th class="text-nowrap" scope="row"><small>Requests per second</small></th>
+              <td>12.40</td>
+              <td>279.10</td>
+              <td>300.58</td>
+            </tr>
+
+            <tr>
+              <th class="text-nowrap" scope="row"><small>Time taken for tests</small></th>
+              <td>806.278 seconds</td>
+              <td>35.830 seconds</td>
+              <td>33.269 seconds</td>
+            </tr>
+
+            <tr>
+              <th class="text-nowrap" scope="row">Where</th>
+              <td colspan="3">
+            </tr>
+
+           <tr>
+              <th class="text-nowrap" scope="row"><small>Requests per second</small></th>
+              <td>35.465</td>
+              <td>399.07</td>
+              <td>390.25</td>
+            </tr>
+
+            <tr>
+              <th class="text-nowrap" scope="row"><small>Time taken for tests</small></th>
+              <td>354.655 seconds</td>
+              <td>25.058 seconds</td>
+              <td>25.624 seconds</td>
+            </tr>
+
+            <tr>
+              <th class="text-nowrap" scope="row">Limit</th>
+              <td colspan="3">
+            </tr>
+
+           <tr>
+              <th class="text-nowrap" scope="row"><small>Requests per second</small></th>
+              <td>N/A</td>
+              <td>254.91</td>
+              <td>259.47</td>
+            </tr>
+
+            <tr>
+              <th class="text-nowrap" scope="row"><small>Time taken for tests</small></th>
+              <td>N/A</td>
+              <td>39.229 seconds</td>
+              <td>38.540 seconds</td>
+            </tr>
+
+
+          </tbody>
+        </table>
+      </div>
 
       <h3 id="performance">Performance</h3>
       <p> Performance test compared to MySQL and Derby database for supported queries only.</p>
       <p> Samples run 1000 times each.</p>
+
+
 
       <div class="table-responsive">
         <table class="table table-bordered table-striped">

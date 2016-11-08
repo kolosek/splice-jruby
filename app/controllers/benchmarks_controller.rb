@@ -18,4 +18,10 @@ class BenchmarksController < ApplicationController
     head :ok, content_type: "text/html"
   end
 
+  def method_limit
+    companies = Company.limit(1)
+    ids = companies.ids
+    head :ok, content_type: "text/html"
+  end
+
 end
