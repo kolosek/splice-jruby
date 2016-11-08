@@ -1,0 +1,53 @@
+# Set compilation mode. JIT = at runtime; FORCE = before execution. (JIT, FORCE, OFF, OFFIR)
+compile.mode = JIT
+
+# compile.frameless=true
+#compile.fastops=true
+#compile.positionless=true
+#compile.threadless=true
+compile.invokedynamic=false
+#compile.fastest=true
+
+
+
+# Dump to console all bytecode generated at runtime.
+# compile.dump = true
+
+# Enable verbose JIT logging (reports failed compilation)
+# jit.logging.verbose = true
+
+# Log require/load file searches.
+# debug.loadService = true
+
+# Display location of the file executed with the -S option
+# debug.scriptResolution = true
+
+# Specify the major Ruby version to be compatible with.
+# Options: [1.8, 1.9, 2.0], Default: 1.9.
+compat.version = 1.8
+
+# Set the style of exception backtraces. (normal, raw, full, mri)
+#backtrace.style = full
+
+# Enable colorized backtraces.
+#backtrace.color = true
+
+# Enable C extensions under JRuby
+#cext.enabled = true
+
+# Enable debugging
+#debug.fullTrace = true
+
+# Enable errono backtracing
+#errno.backtrace = true
+
+# Log every time an exception backtrace is generated.
+# Options: [true, false], Default: false.
+#log.backtraces = true
+
+# Log every time a Kernel#caller backtrace is generated.
+# Options: [true, false], Default: false.
+#log.callers = true
+
+# Enable verbose logging of native extension loading.
+#native.verbose = true
