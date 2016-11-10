@@ -1,13 +1,17 @@
 default: &default
-  # adapter: postgresql
-  adapter: jdbcderby
-  database: splicedb
-  username: splice
-  password: admin
-  driver: com.splicemachine.db.jdbc.ClientDriver
-  url: jdbc:splice://localhost:1527/splicedb
-  prepared_statements: true
-  pool: 1000
+  # Comment postgres adapter in order to use splice
+  adapter: postgresql
+
+  # Uncomment lines below to use splice:
+
+  # adapter: jdbcderby
+  # database: splicedb
+  # username: splice
+  # password: admin
+  # driver: com.splicemachine.db.jdbc.ClientDriver
+  # url: jdbc:splice://localhost:1527/splicedb
+  # prepared_statements: true
+  # pool: 1000
 
 
 development:
