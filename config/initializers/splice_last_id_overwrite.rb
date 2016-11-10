@@ -1,4 +1,4 @@
-if  RbConfig::CONFIG['ruby_install_name'] == 'jruby'
+if  RbConfig::CONFIG['ruby_install_name'] == 'jruby' && false
   ActiveRecord::ConnectionAdapters::JdbcAdapter.class_eval do
       def exec_insert(sql, name, binds, pk = nil, sequence_name = nil)
         if sql.respond_to?(:to_sql)

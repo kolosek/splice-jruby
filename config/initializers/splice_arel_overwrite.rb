@@ -1,4 +1,4 @@
-if  RbConfig::CONFIG['ruby_install_name'] == 'jruby'
+if  RbConfig::CONFIG['ruby_install_name'] == 'jruby' && false
   Arel::Visitors::ToSql.class_eval do
     def visit_Arel_Nodes_Offset o, collector
       collector << "OFFSET "
