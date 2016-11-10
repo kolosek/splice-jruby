@@ -11,7 +11,6 @@ platforms :jruby do
   gem 'activerecord-jdbcpostgresql-adapter'
   gem 'jdbc-mysql'
   gem 'activerecord-jdbc-adapter'
-  gem "psych"
 end
 
 gem 'puma'
