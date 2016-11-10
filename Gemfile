@@ -11,6 +11,7 @@ platforms :jruby do
   gem 'activerecord-jdbcpostgresql-adapter'
   gem 'jdbc-mysql'
   gem 'activerecord-jdbc-adapter'
+  gem "psych"
 end
 
 gem 'puma'
@@ -52,6 +53,7 @@ gem 'lock_jar'
 group :development, :test do
   gem 'pry'
   gem 'pry-nav'
+  # gem 'pry-stack_explorer'
   gem 'byebug', platform: :mri
 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
