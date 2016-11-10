@@ -63,10 +63,23 @@
 
   `export LD_LIBRARY_PATH=/usr/local/lib`
 
+# Testing
 
-# Run tests
+#### Run tests
 
   `bundle exec rspec spec/`
+
+#### Run benchmarks
+
+  `bundle exec rake benchmark:threads`
+
+#### Run server
+
+  `be puma -p 3000 -t 16:16 -e production`
+
+#### Run benchmark
+
+  `ab -n 10000 -c 1000 -r http://localhost:3000/benchmarks/method_where`
 
 # Switching between Ruby and JRuby
 
