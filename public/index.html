@@ -140,14 +140,14 @@ Shared Example Group: "model create_with" called from ./spec/models/company_spec
             <tr>
               <th class="text-nowrap" scope="row"><small>Add</small></th>
               <td class="passed"><span>passed</span></td>
-              <td class="failed">
+              <td class="passed">
                 <a class="" data-toggle="collapse" href="#has_many_association_add_derby">
-                  failed
+                  passed
                 </a>
               </td>
-              <td class="failed">
+              <td class="progress">
                 <a class="" data-toggle="collapse" href="#has_many_association_add_splice">
-                  failed
+                  progress
                 </a>
               </td>
             </tr>
@@ -303,9 +303,9 @@ Failure/Error: item.destroy
             <tr>
               <th class="text-nowrap" scope="row"><small>Add</small></th>
               <td class="passed"><span>passed</span></td>
-              <td class="failed">
+              <td class="passed">
                 <a class="" data-toggle="collapse" href="#has_one_association_derby">
-                  failed
+                  passed
                 </a>
               </td>
               <td class="progress">
@@ -591,14 +591,14 @@ Shared Example Group: "belongs_to association" called from ./spec/models/user_sp
             <tr>
               <th class="text-nowrap" scope="row"><small>Create</small></th>
               <td class="passed"><span>passed</span></td>
-              <td class="failed">
+              <td class="passed">
                 <a class="" data-toggle="collapse" href="#has_many_and_belongs_to_splice_derby">
-                  failed
+                  passed
                 </a>
               </td>
-              <td class="failed">
+              <td class="progress">
                 <a class="" data-toggle="collapse" href="#has_many_and_belongs_to_splice_splice">
-                  failed
+                  progress
                 </a>
               </td>
             </tr>
@@ -684,14 +684,14 @@ Shared Example Group: "habtm association" called from ./spec/models/profile_spec
             <tr>
               <th class="text-nowrap" scope="row">All after update</th>
               <td class="passed"><span>passed</span></td>
-              <td class="failed">
+              <td class="passed">
                 <a class="" data-toggle="collapse" href="#all_after_update">
-                  failed
+                  passed
                 </a>
               </td>
-              <td class="failed">
+              <td class="progress">
                 <a class="" data-toggle="collapse" href="#all_after_update">
-                  failed
+                  progress
                 </a>
               </td>
             </tr>
@@ -970,14 +970,14 @@ Shared Example Group: "find selector" called from ./spec/models/company_spec.rb:
             <tr>
               <th class="text-nowrap" scope="row">Include</th>
               <td class="passed"><span>passed</span></td>
-              <td class="failed">
+              <td class="passed">
                 <a class="" data-toggle="collapse" href="#include_splice_derby">
-                  failed
+                  passed
                 </a>
               </td>
-              <td class="failed">
+              <td class="progress">
                 <a class="" data-toggle="collapse" href="#include_splice_derby">
-                  failed
+                  progress
                 </a>
               </td>
             </tr>
@@ -1288,14 +1288,14 @@ Shared Example Group: "exists? selector" called from ./spec/models/company_spec.
             <tr>
               <th class="text-nowrap" scope="row">Pessimistic Locking (lock)</th>
               <td class="passed"><span>passed</span></td>
-              <td class="failed">
+              <td class="passed">
                 <a class="" data-toggle="collapse" href="#pessimistic_locking_derby">
-                  failed
+                  passed
                 </a>
               </td>
-              <td class="failed">
+              <td class="fixed-test">
                 <a class="" data-toggle="collapse" href="#pessimistic_locking_splice">
-                  failed
+                  fixed
                 </a>
               </td>
             </tr>
@@ -1365,9 +1365,9 @@ Shared Example Group: "pessimistic locking" called from ./spec/models/company_sp
               <th class="text-nowrap" scope="row">Extend Scope</th>
               <td class="passed"><span>passed</span></td>
               <td class="passed"><span>passed</span></td>
-              <td class="failed">
+              <td class="fixed-test">
                 <a class="" data-toggle="collapse" href="#extend_scope_splice">
-                  failed
+                  fixed
                 </a>
               </td>
             </tr>
@@ -1458,21 +1458,28 @@ ActiveRecord::StatementInvalid:
       </div>
 
       <h3 id="issues">Issues</h3>
-      <h4>LIMIT issue</h4> <span class="fixed-label">Fixed</span>
-      <p>
+      <h4>LIMIT issue</h4> <a class="fixed-label" data-toggle="collapse" href="#issue_limit">
+                  Fixed
+                </a>
+      <p class="collapse" id="issue_limit">
         JDBC adapter for splice reports an error when using LIMIT.
         <br/>
         Compared to derby adapter, the LIMIT command is being translated to: FETCH FIRST 1 ROWS ONLY, instead of LIMIT 1
       </p>
 
-      <h4>OFFSET issue</h4> <span class="fixed-label">Fixed</span>
-      <p>
+      <h4>OFFSET issue</h4><a class="fixed-label" data-toggle="collapse" href="#issue_offset">
+                  Fixed
+                </a>
+      <p class="collapse" id="issue_offset">
         JDBC adapter for splice reports an error when using OFFSET.
         <br/>
         The OFFSET is being called by the adapter like 'OFFSET 4', instead of 'OFFSET 4 ROWS'
       </p>
 
-      <h4>ID issue</h4><span class="fixed-label">Fixed (possibility to re-check later on)</span>
+      <h4>ID issue</h4><a class="fixed-label" data-toggle="collapse" href="#issue_id">
+                  Fixed (possibility to re-check later on)
+                </a>
+      <div class="collapse" id="issue_id">
       <p>
         The ID is not properly created. Newly created object returns ID=0 instead of the actual ID.
         <br/>
@@ -1493,29 +1500,38 @@ end
 
 
       </p>
+      </div>
 
-      <h4>Has Many and Belongs To issue</h4>
-      <p>
+      <h4>Has Many and Belongs To issue</h4><a class="failed-label" data-toggle="collapse" href="#issue_hmabtm">
+                  Failed
+                </a>
+      <p class="collapse" id="issue_hmabtm">
         Rails or the adapter doesn't generate SQL which would populate the rows into 'intermediate' table, e.g. "tags_users" with user_id and tag_id
       </p>
 
-      <h4>FOR UPDATE issue (Both Splice and Derby)</h4>
-      <p>
+      <h4>FOR UPDATE issue (Both Splice and Derby)</h4><a class="fixed-label" data-toggle="collapse" href="#issue_for_update">
+                  Fixed
+                </a>
+      <p class="collapse" id="issue_for_update">
         For locking the tables is used command "FOR UPDATE", which is not supported by Derby.
         <br/>
         SELECT COUNT(*) FROM "COMPANIES" WHERE "COMPANIES"."ID" = ? FOR UPDATE
       </p>
 
-      <h4>Selecting all after updating a record</h4>
-      <p>
+      <h4>Selecting all after updating a record</h4><a class="failed-label" data-toggle="collapse" href="#issue_selecting_all">
+                  Failed
+                </a>
+      <p class="collapse" id="issue_selecting_all">
         When selecting all records from database, all records are retreved as expected.
         <br/>
         But, once an individual record is updated, selecting all records from a database table that contains the updated record, will return all the records like no previous update was made, even-though when retreving the actual updated record, it will retreve the new updated values.
         <br/>
       </p>
 
-      <h4>Extend Scope issue</h4>
-      <p>
+      <h4>Extend Scope issue</h4><a class="fixed-label" data-toggle="collapse" href="#issue_extend_scope">
+                  Fixed
+                </a>
+      <div class="collapse" id="issue_extend_scope">
         When extending the scope, derby generates:
         <br/>
         <pre class="prettyprint">
@@ -1527,12 +1543,25 @@ end
         SELECT  companies.* FROM companies FETCH FIRST 4 ROWS ONLY OFFSET 4 ROWS
         </pre>
         This is a Rails issue.
-      </p>
+      </div>
+
+            <h4>Circular dependency issue</h4><a class="failed-label" data-toggle="collapse" href="#issue_circular_dependency">
+                  Failed
+                </a>
+      <div class="collapse" id="issue_circular_dependency">
+        When running a rake task with a number of inputs, an error might occur:
+        <br/>
+        Circular dependency detected while autoloading constant Company
+      </div>
+
+
 
 
       <h3 id="migration_issues">Migration Issues</h3>
-      <h4>rake db:migrate issue</h4>
-      <p>
+      <h4>rake db:migrate issue</h4><a class="fixed-label" data-toggle="collapse" href="#migration_init">
+                  Fixed
+                </a>
+      <div class="collapse" id="migration_init">
       SQL command generated by Rails:
       <br/>
       CREATE TABLE schema_migrations (version varchar(32672) NOT NULL)
@@ -1553,10 +1582,12 @@ NoMethodError: undefined method `+' for :version:Symbol
 /home/aleksandar/splice-jruby/.bundle/jruby/2.3.0/gems/activerecord-4.2.5.1/lib/active_record/tasks/database_tasks.rb:137:in `migrate'
 /home/aleksandar/splice-jruby/.bundle/jruby/2.3.0/gems/activerecord-4.2.5.1/lib/active_record/railties/databases.rake:44:in `block in (root)'
       </pre>
-      </p>
+      </div>
 
-      <h4>CREATE TABLE schema_migrations issue</h4>
-      <p>
+      <h4>CREATE TABLE schema_migrations issue</h4><a class="fixed-label" data-toggle="collapse" href="#migration_create_table">
+                  Fixed
+                </a>
+      <div class="collapse" id="migration_create_table">
       SQL command generated by Rails when creating database table:
       <br/>
       CREATE TABLE companies (id primary_key, name varchar(32672), created_at timestamp NOT NULL, updated_at timestamp NOT NULL)
@@ -1609,7 +1640,18 @@ ActiveRecord::JDBCError: java.sql.SQLSyntaxErrorException: TYPE 'PRIMARY_KEY' do
 /home/aleksandar/.rvm/gems/jruby-9.1.5.0/bin/jruby_executable_hooks:15:in `<main>'
 
       </pre>
-      </p>
+      </div>
+
+      <h4>Default value for string</h4><a class="failed-label" data-toggle="collapse" href="#migration_default">
+                  Failed
+                </a>
+      <div class="collapse" id="migration_default">
+      when setting a default string in migration like:
+      <pre>
+        t.string :header, default: ''
+      </pre>
+      It sets a default value '' (two single quoutes) in the database, instead of an empty string.
+      </div>
 
 
       <h3 id="real_world_performance">Real World Performance</h3>
