@@ -65,6 +65,8 @@
 
 # Testing
 
+  Before running tests or benchmarks start splice cluster first: `./start-splice-cluster -b`
+
 #### Run tests
 
   `bundle exec rspec spec/`
