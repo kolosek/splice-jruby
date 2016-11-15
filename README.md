@@ -8,7 +8,7 @@
 
   `\curl -sSL https://get.rvm.io | bash -s stable`
 
-  More information: https://rvm.io/rvm/install
+   More information: https://rvm.io/rvm/install
 
 
 2. Install specific JRuby version. Go to app root directory and run in console:
@@ -68,18 +68,22 @@
 
 #### Run real server-client test:
 
-  *Note: Some of the SQL commands will assume that there are records in database, like where, update etc. , so in `bundle run rails c`, and create a single record with: `Company.create(name: 'Company')` before running the tests.*
+  *Note: Some of the SQL commands will assume that there are records in database, like where, update etc. , so in `bundle exec rails c`, and create a single record with: `Company.create(name: 'Company')` before running the tests.*
 
   1. Run the server: `be puma -p 3000 -t 16:16 -e production`
   2. Run the benchmark `ab -n 10000 -c 1000 -r http://localhost:3000/benchmarks/method_where`
 
-#### Run benchmark on single SQL command
+###### Methods supported:
+
+  `method_create`, `method_update`, `method_where`, `method_limit`
+
+#### Run benchmarks on single SQL commands (where, create, limit etc.):
 
   `bundle exec rake benchmark:models`
 
 # Switching between Ruby and JRuby
 
-  In this app **Ruby**  is used for *MySQL* and **JRuby** for *Splice/Derby*
+  In this app **Ruby**  is used for *MySQL* and **JRuby** for *Splice Engine*
 
   If you want to run the code against `ruby` code and test the app with it, open file `.ruby-version` and change any text in it to `ruby-2.3.1`, or any other ruby version. Return to the previous directory with (`cd ..`), and re-enter the app directory by `cd base-jruby-splice` (in order to refresh the settings)
 
