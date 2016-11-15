@@ -8,7 +8,7 @@ gem 'rails', '4.2.5.1'
 platforms :jruby do
   # JDBC database adapters for database. Include relevant driver
   gem 'activerecord-jdbcderby-adapter'
-  gem 'jdbc-mysql'
+  gem 'activerecord-jdbcpostgresql-adapter'
 end
 
 gem 'puma'
