@@ -262,7 +262,7 @@ jit.max=4096
 
 # Specify the major Ruby version to be compatible with.
 # Options: [1.8, 1.9, 2.0], Default: 1.9.
-# compat.version=2.0
+compat.version=2.0
 
 # Enable or disable ObjectSpace.each_object.
 # Options: [true, false], Default: false.
@@ -278,7 +278,7 @@ launch.inproc=false
 
 # Specify the major Java bytecode version.
 # Options: [1.5, 1.6, 1.7], Default: 1.7.
-bytecode.version=1.8
+# bytecode.version=1.8
 
 # Set whether JMX management is enabled.
 # Options: [true, false], Default: false.
