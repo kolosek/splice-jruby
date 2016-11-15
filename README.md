@@ -37,6 +37,7 @@
 
 
 # Starting up the splicemachine and the app
+
   Make sure splice engine is up and running:
 
   1. `cd ~/spliceengine/`
@@ -65,25 +66,24 @@
 
   `bundle exec rspec spec/`
 
-#### Run benchmark on single SQL commands:
+#### Run real server-client test:
 
-  `bundle exec rake benchmark:threads`
+  *Note: Some of the SQL commands will assume that there are records in database, like where, update etc. , so in `bundle run rails c`, and create a single record with: `Company.create(name: 'Company')` before running the tests.*
 
-#### Run server
+  1. Run the server: `be puma -p 3000 -t 16:16 -e production`
+  2. Run the benchmark `ab -n 10000 -c 1000 -r http://localhost:3000/benchmarks/method_where`
 
-  `be puma -p 3000 -t 16:16 -e production`
+#### Run benchmark on single SQL command
 
-#### Run benchmark
-
-  `ab -n 10000 -c 1000 -r http://localhost:3000/benchmarks/method_where`
+  `bundle exec rake benchmark:models`
 
 # Switching between Ruby and JRuby
 
   In this app **Ruby**  is used for *MySQL* and **JRuby** for *Splice/Derby*
 
-  If you want to run the code against `ruby` code and test the app with it, open file `.ruby-version` and change any text in it to `ruby-2.3.1`, or any other ruby version
+  If you want to run the code against `ruby` code and test the app with it, open file `.ruby-version` and change any text in it to `ruby-2.3.1`, or any other ruby version. Return to the previous directory with (`cd ..`), and re-enter the app directory by `cd base-jruby-splice` (in order to refresh the settings)
 
-  The database settings for `ruby` is in `database_ruby.yml`. No need to replace `database.yml`, just modify the `database_ruby.yml` file with your settings.
+  The database settings for `ruby` is in `database_ruby.yml`. No need to replace or delete the `database.yml`, just modify the `database_ruby.yml` file with your settings.
 
 # Implementation of Rails on CentOS (centos-release-6-8.el6.centos.12.3.x86_64)
 
