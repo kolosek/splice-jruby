@@ -1,67 +1,61 @@
-# Prerequirements
+# Setting up environment
 
-* Ruby version
-  2.3.1
+ Required: **JRuby 9.1.5.0** (Ruby 2.3.1), **Rails 4.2.1**
 
-* Rails Version
-  4.2.1
+### Install JRuby (using RVM)
 
-* RVM
-
-  If no rvm is installed, install it with:
+1. If no RVM is installed, install it with:
 
   `\curl -sSL https://get.rvm.io | bash -s stable`
 
   More information: https://rvm.io/rvm/install
 
 
-* JRuby Version
-  9.1.5.0
-
-  If JRuby is not installed, go to app root directory and run in console:
+2. Install specific JRuby version. Go to app root directory and run in console:
 
   `rvm use jruby-9.1.5.0 --install`
 
 
 
-* Install all the gems
+### Install all the gems
 
   `bundle install`
 
-* System dependencies
 
-  Just run the app. No additional changes needed.
+### Setting up a database
 
-  The jar file is located in `/lib` directory
+  1. Delete the `config/database.yml` file.
+  2. Locate `database_example.yml` and rename it to `database.yml`
+  3. Run `bundle exec rake db:migrate`
 
-  If making some changes copy and overwrite new modified file:
-  `~/spliceengine/db-client/target/db-client-3.0.0.10-SNAPSHOT.jar` to the `/lib` directory
+### Additional information (not neeeded for the set-up)
 
+  The splice engine jar file is located in `/lib` directory
 
-# Setting up a database
-
-  Splicemachine doesn't play well with automatic creating of tables.
-  Go to `database.yml`:
-  - Uncommet the commented lines, and delete `adapter: postgresql`
-  - Change adapter from `jdbc` to `jdbcderby`
-  - Run `bundle exec rake db:migrate RAILS_ENV=test`
-  - After all the tables are created, change adapter back to `jdbc`
+  If making some changes to the splice engine itself, copy the new compiled file and overwrite it in lib directory, like:
+  `~/spliceengine/db-client/target/db-client-2.0.1.34-SNAPSHOT.jar` to the `/lib` directory
 
 
 # Starting up the splicemachine and the app
-  Make sure splicemachine is up and running:
+  Make sure splice engine is up and running:
 
-  `cd ~/spliceengine/`
+  1. `cd ~/spliceengine/`
 
-  `./start-splice-cluster` (only on the first time, and run `./start-splice-cluster -b`on every other time)
+  2. `./start-splice-cluster` (only for the first time). Run `./start-splice-cluster -b`on every other time
 
-  `./start-splice-cluster -h`, for any addtional information
+    `./start-splice-cluster -h`, for any addtional information
 
-#### Possible issues:
+
+##### Possible issues:
 
   If there are issues with running a splice cluster, you might need to add next line into your `~/.bashrc` file:
 
   `export LD_LIBRARY_PATH=/usr/local/lib`
+
+##### Notes:
+
+  On linux, if splice cluster is not run on the first time (after running a `./start-splice-cluster -b`), stop the execution, and run `./start-splice-cluster -b` again.
+
 
 # Testing
 
@@ -71,7 +65,7 @@
 
   `bundle exec rspec spec/`
 
-#### Run benchmarks
+#### Run benchmark on single SQL commands:
 
   `bundle exec rake benchmark:threads`
 
