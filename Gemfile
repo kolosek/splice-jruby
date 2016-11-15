@@ -8,12 +8,12 @@ gem 'rails', '4.2.5.1'
 platforms :jruby do
   # JDBC database adapters for database. Include relevant driver
   gem 'activerecord-jdbcderby-adapter'
-  gem 'activerecord-jdbcpostgresql-adapter'
   gem 'jdbc-mysql'
-  gem 'activerecord-jdbc-adapter'
 end
 
 gem 'puma'
+# Timeout notification (used in relation with puma to notify and log any long requests)
+gem "rack-timeout"
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'

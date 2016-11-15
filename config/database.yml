@@ -1,18 +1,7 @@
 default: &default
-  # Comment postgres adapter in order to use splice
+  # Used only for presentation on Heroku.
+  # Delete database.yml, and rename database_example.yml to database.yml
   adapter: postgresql
-
-  # Uncomment lines below to use splice:
-
-  # adapter: jdbcderby
-  # database: splicedb
-  # username: splice
-  # password: admin
-  # driver: com.splicemachine.db.jdbc.ClientDriver
-  # url: jdbc:splice://localhost:1527/splicedb
-  # prepared_statements: true
-  # pool: 1000
-
 
 development:
   <<: *default
