@@ -262,7 +262,7 @@ jit.max=4096
 
 # Specify the major Ruby version to be compatible with.
 # Options: [1.8, 1.9, 2.0], Default: 1.9.
-compat.version=2.0
+# compat.version=2.0
 
 # Enable or disable ObjectSpace.each_object.
 # Options: [true, false], Default: false.
@@ -326,7 +326,7 @@ native.net.protocol=false
 
 # Use JVM coroutines for Fiber.
 # Options: [true, false], Default: false.
-fiber.coroutines=false
+fiber.coroutines=true
 
 # Use a single global lock for requires.
 # Options: [true, false], Default: false.
