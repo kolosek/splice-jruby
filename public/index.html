@@ -145,9 +145,9 @@ Shared Example Group: "model create_with" called from ./spec/models/company_spec
                   passed
                 </a>
               </td>
-              <td class="progress">
+              <td class="fixed-test">
                 <a class="" data-toggle="collapse" href="#has_many_association_add_splice">
-                  progress
+                  fixed
                 </a>
               </td>
             </tr>
@@ -308,9 +308,9 @@ Failure/Error: item.destroy
                   passed
                 </a>
               </td>
-              <td class="progress">
+              <td class="fixed-test">
                 <a class="" data-toggle="collapse" href="#has_one_association_splice">
-                  progress
+                  fixed
                 </a>
               </td>
             </tr>
@@ -596,9 +596,9 @@ Shared Example Group: "belongs_to association" called from ./spec/models/user_sp
                   passed
                 </a>
               </td>
-              <td class="progress">
+              <td class="fixed-test">
                 <a class="" data-toggle="collapse" href="#has_many_and_belongs_to_splice_splice">
-                  progress
+                  fixed
                 </a>
               </td>
             </tr>
@@ -689,9 +689,9 @@ Shared Example Group: "habtm association" called from ./spec/models/profile_spec
                   passed
                 </a>
               </td>
-              <td class="progress">
+              <td class="fixed-test">
                 <a class="" data-toggle="collapse" href="#all_after_update">
-                  progress
+                  fixed
                 </a>
               </td>
             </tr>
@@ -975,9 +975,9 @@ Shared Example Group: "find selector" called from ./spec/models/company_spec.rb:
                   passed
                 </a>
               </td>
-              <td class="progress">
+              <td class="fixed-test">
                 <a class="" data-toggle="collapse" href="#include_splice_derby">
-                  progress
+                  fixed
                 </a>
               </td>
             </tr>
@@ -1477,7 +1477,7 @@ ActiveRecord::StatementInvalid:
       </p>
 
       <h4>ID issue</h4><a class="fixed-label" data-toggle="collapse" href="#issue_id">
-                  Fixed (possibility to re-check later on)
+                  Fixed
                 </a>
       <div class="collapse" id="issue_id">
       <p>
@@ -1502,8 +1502,8 @@ end
       </p>
       </div>
 
-      <h4>Has Many and Belongs To issue</h4><a class="failed-label" data-toggle="collapse" href="#issue_hmabtm">
-                  Failed
+      <h4>Has Many and Belongs To issue</h4><a class="fixed-label" data-toggle="collapse" href="#issue_hmabtm">
+                  Fixed
                 </a>
       <p class="collapse" id="issue_hmabtm">
         Rails or the adapter doesn't generate SQL which would populate the rows into 'intermediate' table, e.g. "tags_users" with user_id and tag_id
@@ -1518,8 +1518,8 @@ end
         SELECT COUNT(*) FROM "COMPANIES" WHERE "COMPANIES"."ID" = ? FOR UPDATE
       </p>
 
-      <h4>Selecting all after updating a record</h4><a class="failed-label" data-toggle="collapse" href="#issue_selecting_all">
-                  Failed
+      <h4>Selecting all after updating a record</h4><a class="fixed-label" data-toggle="collapse" href="#issue_selecting_all">
+                  Fixed
                 </a>
       <p class="collapse" id="issue_selecting_all">
         When selecting all records from database, all records are retreved as expected.
@@ -1642,8 +1642,8 @@ ActiveRecord::JDBCError: java.sql.SQLSyntaxErrorException: TYPE 'PRIMARY_KEY' do
       </pre>
       </div>
 
-      <h4>Default value for string</h4><a class="failed-label" data-toggle="collapse" href="#migration_default">
-                  Failed
+      <h4>Default value for string</h4><a class="fixed-label" data-toggle="collapse" href="#migration_default">
+                  Fixed
                 </a>
       <div class="collapse" id="migration_default">
       when setting a default string in migration like:
@@ -1651,6 +1651,25 @@ ActiveRecord::JDBCError: java.sql.SQLSyntaxErrorException: TYPE 'PRIMARY_KEY' do
         t.string :header, default: ''
       </pre>
       It sets a default value '' (two single quoutes) in the database, instead of an empty string.
+      </div>
+
+      <h4>Creating indexes freezes the migration (Derby and Splice)</h4><a class="progress-label" data-toggle="collapse" href="#migration_index">
+                  Partially fixed
+                </a>  &nbsp;&nbsp; (by skipping creation of indexes and foreign keys)
+      <div class="collapse" id="migration_index">
+      When adding an index or a foreign key inside a reference it is causing migration to freeze:
+
+      <pre>
+create_join_table :users, :tags do |t|
+  t.index [:user_id, :tag_id]
+  t.index [:tag_id, :user_id]
+end
+      </pre>
+      <pre>
+CREATE UNIQUE INDEX "UNIQUE_SCHEMA_MIGRATIONS" ON "SCHEMA_MIGRATIONS" ("VERSION")
+      </pre>
+
+        It translates to the correct SQL command, but the execution freezes the migration
       </div>
 
 
