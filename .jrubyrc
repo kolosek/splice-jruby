@@ -1,76 +1,61 @@
-
-
 ################################################################################
-# invokedynamic settings
+# compiler settings
 ################################################################################
 
-# Maximum call site failures after which to inline cache.
-# Options: [Integer], Default: 1000.
-invokedynamic.maxfail=1000
+# Set compilation mode. JIT = at runtime; FORCE = before execution.
+# Options: [JIT, FORCE, OFF, OFFIR], Default: JIT.
+compile.mode=JIT
 
-# Maximum polymorphism of PIC binding.
-# Options: [Integer], Default: 2.
-invokedynamic.maxpoly=2
-
-# Log binding of invokedynamic call sites.
+# Dump to console all bytecode generated at runtime.
 # Options: [true, false], Default: false.
-invokedynamic.log.binding=false
+compile.dump=false
 
-# Log invokedynamic-based constant lookups.
+# (EXPERIMENTAL) Turn on compilation without polling for "unsafe" thread events.
 # Options: [true, false], Default: false.
-invokedynamic.log.constants=false
+compile.threadless=true
 
-# Enable all possible uses of invokedynamic.
+# Turn on fast operators for Fixnum and Float.
+# Options: [true, false], Default: true.
+compile.fastops=true
+
+# Set the number of lines at which compiled bodies are "chained".
+# Options: [Integer], Default: 500.
+compile.chainsize=500
+
+# Generate method bindings (handles) for compiled methods lazily.
 # Options: [true, false], Default: false.
-invokedynamic.all=false
+# compile.lazyHandles=false
 
-# Enable all safe (but maybe not fast) uses of invokedynamic.
+# Enable or disable peephole optimizations.
+# Options: [true, false], Default: true.
+compile.peephole=true
+
+# Compile calls without guards, for experimentation.
 # Options: [true, false], Default: false.
-invokedynamic.safe=false
+compile.noguards=false
 
-# Enable invokedynamic for method invocations.
-# Options: [true, false], Default: true.
-invokedynamic.invocation=true
-
-# Use SwitchPoint for class modification guards on invocations.
-# Options: [true, false], Default: true.
-# invokedynamic.invocation.switchpoint=true
-
-# Also bind indirect method invokers to invokedynamic.
-# Options: [true, false], Default: true.
-invokedynamic.invocation.indirect=true
-
-# Bind Ruby to Java invocations with invokedynamic.
-# Options: [true, false], Default: true.
-invokedynamic.invocation.java=true
-
-# Bind Ruby attribue invocations directly to invokedynamic.
-# Options: [true, false], Default: true.
-invokedynamic.invocation.attr=true
-
-# Bind Fixnum and Float math using optimized logic.
-# Options: [true, false], Default: true.
-invokedynamic.invocation.fastops=true
-
-# Use invokedynamic to load cached values like literals and constants.
-# Options: [true, false], Default: true.
-invokedynamic.cache=true
-
-# Use invokedynamic to load constants.
-# Options: [true, false], Default: true.
-invokedynamic.cache.constants=true
-
-# Use invokedynamic to load literals.
-# Options: [true, false], Default: true.
-invokedynamic.cache.literals=true
-
-# Use invokedynamic to get/set instance variables.
-# Options: [true, false], Default: true.
-invokedynamic.cache.ivars=true
-
-# Use ClassValue to store class-specific data.
+# Compile with all "mostly harmless" compiler optimizations.
 # Options: [true, false], Default: false.
-invokedynamic.class.values=false
+compile.fastest=true
+
+# Compile obj.__send__(<literal>, ...) as obj.<literal>(...).
+# Options: [true, false], Default: false.
+compile.fastsend=false
+
+# Return true from multiple assignment instead of a new array.
+# Options: [true, false], Default: false.
+compile.fastMasgn=false
+
+# Use invokedynamic for optimizing Ruby code
+# Options: [true, false], Default: false.
+compile.invokedynamic=false
+
+# (EXPERIMENTAL)
+# Options: [true, false], Default: false.
+# Note: Might not be compatible with newer JRUBY versions
+#compile.frameless=true
+
+
 
 # ################################################################################
 # # jit settings
