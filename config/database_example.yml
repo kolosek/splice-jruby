@@ -1,0 +1,23 @@
+default: &default
+  adapter: jdbcderby
+  username: splice
+  password: admin
+  driver: com.splicemachine.db.jdbc.ClientDriver
+  prepared_statements: true
+  pool: 1000
+
+development:
+  <<: *default
+  database: splicedb
+  url: jdbc:splice://localhost:1527/splicedb
+
+test:
+  <<: *default
+  database: splicedb
+  url: jdbc:splice://localhost:1527/splicedb
+
+
+production:
+  <<: *default
+  database: splicedb
+  url: jdbc:splice://localhost:1527/splicedb
