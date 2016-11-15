@@ -1,4 +1,6 @@
-workers Integer(ENV['WEB_CONCURRENCY'] || 1)
+if !ENV['WEB_CONCURRENCY'].nil?
+  workers Integer(ENV['WEB_CONCURRENCY'])
+end
 threads_count = Integer(ENV['RAILS_MAX_THREADS'] || 16)
 threads threads_count, threads_count
 
