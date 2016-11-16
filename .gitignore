@@ -22,5 +22,4 @@
 
 #Ignore custom files
 .byebug_history
-
-
+/webdriver-profile*
