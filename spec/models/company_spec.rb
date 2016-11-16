@@ -73,6 +73,8 @@ describe Company do
     it_behaves_like 'exists? selector', :name, 'val1', 'val2'
 
     it_behaves_like 'minimum selector', :name, ['3', '5', '1', '4', '2']
+
+    it_behaves_like 'raw sql selector', :name, 'TestName'
   end
 
   describe 'Additional functions' do

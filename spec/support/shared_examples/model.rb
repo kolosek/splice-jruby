@@ -542,3 +542,12 @@ RSpec.shared_examples 'minimum selector' do |field, values|
     expect(model.minimum(field)).to eq(minimum)
   end
 end
+
+RSpec.shared_examples 'raw sql selector' do |field, value|
+  it "returns the expected results" do
+    create(model, field => value)
+    sql = "SELECT * FROM #{model.table_name} ORDER BY #{model.table_name}.id DESC FETCH NEXT 1 ROWS ONLY"
+    results = ActiveRecord::Base.connection.execute(sql)
+    expect(results[0][field.to_s]).to eq(value)
+  end
+end
