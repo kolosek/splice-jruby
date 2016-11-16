@@ -6,9 +6,9 @@ ruby '2.3.1', :engine => 'jruby', :engine_version => '9.1.5.0'
 gem 'rails', '4.2.5.1'
 
 platforms :jruby do
-  # JDBC database adapters for database. Include relevant driver
-  gem 'activerecord-jdbcderby-adapter'
+  # JDBC database adapters for database
   gem 'activerecord-jdbcpostgresql-adapter'
+  gem 'activerecord-jdbcsplice-adapter'
 end
 
 gem 'puma'
