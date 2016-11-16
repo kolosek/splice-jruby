@@ -26,9 +26,9 @@ ActiveRecord::Schema.define(version: 20161026132222) do
 
   create_table "companies", force: :cascade do |t|
     t.string   "name",        limit: 255
-    t.datetime "created_at",  limit: 29,                 null: false
-    t.datetime "updated_at",  limit: 29,                 null: false
-    t.string   "description", limit: 255, default: "''"
+    t.datetime "created_at",  limit: 29,               null: false
+    t.datetime "updated_at",  limit: 29,               null: false
+    t.string   "description", limit: 255, default: ""
   end
 
   create_table "profiles", force: :cascade do |t|
@@ -47,20 +47,18 @@ ActiveRecord::Schema.define(version: 20161026132222) do
   create_table "settings", force: :cascade do |t|
     t.integer  "user_id",     limit: 10
     t.integer  "number",      limit: 10,                                 default: 0
-    t.string   "header",      limit: 255,                                default: "''"
+    t.string   "header",      limit: 255,                                default: ""
     t.text     "description", limit: 2147483647
     t.float    "gravity",     limit: 23,                                 default: 9.807
     t.decimal  "velocity",                       precision: 5, scale: 2, default: 0.0
     t.boolean  "enabled",     limit: 1,                                  default: true
     t.binary   "image",       limit: 2147483647
-    t.date     "birthday",    limit: 10,                                 default: '2016-10-31'
-    t.time     "birthtime",   limit: 8,                                  default: '2000-01-01 09:12:17'
-    t.datetime "deadline",    limit: 29,                                 default: '2016-10-31 09:12:17'
+    t.date     "birthday",    limit: 10,                                 default: '2016-11-15'
+    t.time     "birthtime",   limit: 8,                                  default: '2000-01-01 14:20:03'
+    t.datetime "deadline",    limit: 29,                                 default: '2016-11-15 14:20:03'
     t.datetime "created_at",  limit: 29,                                                                 null: false
     t.datetime "updated_at",  limit: 29,                                                                 null: false
   end
-
-  add_index "settings", ["user_id"], name: "sql161031101217880"
 
   create_table "tags", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -73,9 +71,6 @@ ActiveRecord::Schema.define(version: 20161026132222) do
     t.integer "tag_id",  limit: 10, null: false
   end
 
-  add_index "tags_users", ["tag_id", "user_id"], name: "index_tags_users_on_tag_id_and_user_id"
-  add_index "tags_users", ["user_id", "tag_id"], name: "index_tags_users_on_user_id_and_tag_id"
-
   create_table "users", force: :cascade do |t|
     t.integer  "company_id", limit: 10
     t.string   "name",       limit: 255
@@ -85,5 +80,4 @@ ActiveRecord::Schema.define(version: 20161026132222) do
     t.integer  "credit",     limit: 10,  default: 0
   end
 
-  add_foreign_key "settings", "users"
 end
