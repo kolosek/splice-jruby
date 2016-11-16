@@ -35,6 +35,10 @@
   If making some changes to the splice engine itself, copy the new compiled file and overwrite it in lib directory, like:
   `~/spliceengine/db-client/target/db-client-2.0.1.34-SNAPSHOT.jar` to the `/lib` directory
 
+##### Gem which is needed in order to use splice engine is:
+
+  `gem 'activerecord-jdbcsplice-adapter'`
+
 
 # Starting up the splicemachine and the app
 

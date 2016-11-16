@@ -1545,8 +1545,8 @@ end
         This is a Rails issue.
       </div>
 
-            <h4>Circular dependency issue</h4><a class="failed-label" data-toggle="collapse" href="#issue_circular_dependency">
-                  Failed
+            <h4>Circular dependency issue</h4><a class="fixed-label" data-toggle="collapse" href="#issue_circular_dependency">
+                  Not being able to reproduce anymore
                 </a>
       <div class="collapse" id="issue_circular_dependency">
         When running a rake task with a number of inputs, an error might occur:
@@ -1664,6 +1664,85 @@ create_join_table :users, :tags do |t|
   t.index [:user_id, :tag_id]
   t.index [:tag_id, :user_id]
 end
+      </pre>
+      <pre>
+CREATE UNIQUE INDEX "UNIQUE_SCHEMA_MIGRATIONS" ON "SCHEMA_MIGRATIONS" ("VERSION")
+      </pre>
+
+        It translates to the correct SQL command, but the execution freezes the migration
+      </div>
+
+      <h4>Command rake db:create fails to execute</h4><a class="progress-label" data-toggle="collapse" href="#migration_db_create">
+                  Progress
+                </a>
+      <div class="collapse" id="migration_db_create">
+      <pre>
+java.sql.SQLNonTransientConnectionException: Connection authentication failure occurred.  Reason: userid or password invalid.
+arjdbc/jdbc/RubyJdbcConnection.java:463:in `init_connection'
+/home/aleksandar/splice-ruby/.bundle/jruby/2.3.0/gems/activerecord-jdbc-adapter-1.3.21/lib/arjdbc/jdbc/connection.rb:15:in `initialize'
+/home/aleksandar/splice-ruby/.bundle/jruby/2.3.0/gems/activerecord-jdbc-adapter-1.3.21/lib/arjdbc/jdbc/adapter.rb:76:in `initialize'
+/home/aleksandar/splice-ruby/.bundle/jruby/2.3.0/gems/activerecord-jdbc-adapter-1.3.21/lib/arjdbc/jdbc/adapter.rb:44:in `new'
+/home/aleksandar/splice-ruby/.bundle/jruby/2.3.0/gems/activerecord-jdbc-adapter-1.3.21/lib/arjdbc/jdbc/connection_methods.rb:12:in `jdbc_connection'
+/home/aleksandar/splice-ruby/.bundle/jruby/2.3.0/gems/activerecord-jdbc-adapter-1.3.21/lib/arjdbc/jdbc/connection_methods.rb:20:in `embedded_driver'
+/home/aleksandar/splice-ruby/.bundle/jruby/2.3.0/gems/activerecord-jdbcsplice-adapter-0.1.2/lib/arjdbc/splice/connection_methods.rb:18:in `splice_connection'
+/home/aleksandar/splice-ruby/.bundle/jruby/2.3.0/gems/activerecord-4.2.5.1/lib/active_record/connection_adapters/abstract/connection_pool.rb:438:in `new_connection'
+/home/aleksandar/splice-ruby/.bundle/jruby/2.3.0/gems/activerecord-4.2.5.1/lib/active_record/connection_adapters/abstract/connection_pool.rb:448:in `checkout_new_connection'
+/home/aleksandar/splice-ruby/.bundle/jruby/2.3.0/gems/activerecord-4.2.5.1/lib/active_record/connection_adapters/abstract/connection_pool.rb:422:in `acquire_connection'
+/home/aleksandar/splice-ruby/.bundle/jruby/2.3.0/gems/activerecord-4.2.5.1/lib/active_record/connection_adapters/abstract/connection_pool.rb:349:in `block in checkout'
+/home/aleksandar/.rvm/rubies/jruby-9.1.5.0/lib/ruby/stdlib/monitor.rb:214:in `mon_synchronize'
+/home/aleksandar/splice-ruby/.bundle/jruby/2.3.0/gems/activerecord-4.2.5.1/lib/active_record/connection_adapters/abstract/connection_pool.rb:348:in `checkout'
+/home/aleksandar/splice-ruby/.bundle/jruby/2.3.0/gems/activerecord-4.2.5.1/lib/active_record/connection_adapters/abstract/connection_pool.rb:263:in `block in connection'
+/home/aleksandar/.rvm/rubies/jruby-9.1.5.0/lib/ruby/stdlib/monitor.rb:214:in `mon_synchronize'
+/home/aleksandar/splice-ruby/.bundle/jruby/2.3.0/gems/activerecord-4.2.5.1/lib/active_record/connection_adapters/abstract/connection_pool.rb:262:in `connection'
+/home/aleksandar/splice-ruby/.bundle/jruby/2.3.0/gems/activerecord-4.2.5.1/lib/active_record/connection_adapters/abstract/connection_pool.rb:571:in `retrieve_connection'
+/home/aleksandar/splice-ruby/.bundle/jruby/2.3.0/gems/activerecord-4.2.5.1/lib/active_record/connection_handling.rb:113:in `retrieve_connection'
+/home/aleksandar/splice-ruby/.bundle/jruby/2.3.0/gems/activerecord-4.2.5.1/lib/active_record/connection_handling.rb:87:in `connection'
+/home/aleksandar/splice-ruby/.bundle/jruby/2.3.0/gems/activerecord-jdbc-adapter-1.3.21/lib/arjdbc/tasks/derby_database_tasks.rb:9:in `create'
+/home/aleksandar/splice-ruby/.bundle/jruby/2.3.0/gems/activerecord-4.2.5.1/lib/active_record/tasks/database_tasks.rb:93:in `create'
+/home/aleksandar/splice-ruby/.bundle/jruby/2.3.0/gems/activerecord-4.2.5.1/lib/active_record/tasks/database_tasks.rb:107:in `block in create_current'
+/home/aleksandar/splice-ruby/.bundle/jruby/2.3.0/gems/activerecord-4.2.5.1/lib/active_record/tasks/database_tasks.rb:275:in `block in each_current_configuration'
+org/jruby/RubyArray.java:1734:in `each'
+/home/aleksandar/splice-ruby/.bundle/jruby/2.3.0/gems/activerecord-4.2.5.1/lib/active_record/tasks/database_tasks.rb:274:in `each_current_configuration'
+/home/aleksandar/splice-ruby/.bundle/jruby/2.3.0/gems/activerecord-4.2.5.1/lib/active_record/tasks/database_tasks.rb:106:in `create_current'
+/home/aleksandar/splice-ruby/.bundle/jruby/2.3.0/gems/activerecord-4.2.5.1/lib/active_record/railties/databases.rake:17:in `block in (root)'
+/home/aleksandar/splice-ruby/.bundle/jruby/2.3.0/gems/rake-10.5.0/lib/rake/task.rb:240:in `block in execute'
+org/jruby/RubyArray.java:1734:in `each'
+/home/aleksandar/splice-ruby/.bundle/jruby/2.3.0/gems/rake-10.5.0/lib/rake/task.rb:235:in `execute'
+/home/aleksandar/splice-ruby/.bundle/jruby/2.3.0/gems/rake-10.5.0/lib/rake/task.rb:179:in `block in invoke_with_call_chain'
+/home/aleksandar/.rvm/rubies/jruby-9.1.5.0/lib/ruby/stdlib/monitor.rb:214:in `mon_synchronize'
+/home/aleksandar/splice-ruby/.bundle/jruby/2.3.0/gems/rake-10.5.0/lib/rake/task.rb:172:in `invoke_with_call_chain'
+/home/aleksandar/splice-ruby/.bundle/jruby/2.3.0/gems/rake-10.5.0/lib/rake/task.rb:165:in `invoke'
+/home/aleksandar/splice-ruby/.bundle/jruby/2.3.0/gems/rake-10.5.0/lib/rake/application.rb:150:in `invoke_task'
+/home/aleksandar/splice-ruby/.bundle/jruby/2.3.0/gems/rake-10.5.0/lib/rake/application.rb:106:in `block in top_level'
+org/jruby/RubyArray.java:1734:in `each'
+/home/aleksandar/splice-ruby/.bundle/jruby/2.3.0/gems/rake-10.5.0/lib/rake/application.rb:106:in `block in top_level'
+/home/aleksandar/splice-ruby/.bundle/jruby/2.3.0/gems/rake-10.5.0/lib/rake/application.rb:115:in `run_with_threads'
+/home/aleksandar/splice-ruby/.bundle/jruby/2.3.0/gems/rake-10.5.0/lib/rake/application.rb:100:in `top_level'
+/home/aleksandar/splice-ruby/.bundle/jruby/2.3.0/gems/rake-10.5.0/lib/rake/application.rb:78:in `block in run'
+/home/aleksandar/splice-ruby/.bundle/jruby/2.3.0/gems/rake-10.5.0/lib/rake/application.rb:176:in `standard_exception_handling'
+/home/aleksandar/splice-ruby/.bundle/jruby/2.3.0/gems/rake-10.5.0/lib/rake/application.rb:75:in `run'
+/home/aleksandar/splice-ruby/.bundle/jruby/2.3.0/gems/rake-10.5.0/bin/rake:33:in `<main>'
+org/jruby/RubyKernel.java:974:in `load'
+/home/aleksandar/splice-ruby/.bundle/jruby/2.3.0/bin/rake:1:in `<main>'
+org/jruby/RubyKernel.java:974:in `load'
+/home/aleksandar/splice-ruby/.bundle/jruby/2.3.0/bin/rake:22:in `(root)'
+/home/aleksandar/.rvm/gems/jruby-9.1.5.0/gems/bundler-1.13.5/lib/bundler/cli/exec.rb:1:in `(root)'
+/home/aleksandar/.rvm/gems/jruby-9.1.5.0/gems/bundler-1.13.5/lib/bundler/cli/exec.rb:74:in `kernel_load'
+/home/aleksandar/.rvm/gems/jruby-9.1.5.0/gems/bundler-1.13.5/lib/bundler/cli/exec.rb:27:in `run'
+/home/aleksandar/.rvm/gems/jruby-9.1.5.0/gems/bundler-1.13.5/lib/bundler/cli.rb:332:in `exec'
+/home/aleksandar/.rvm/gems/jruby-9.1.5.0/gems/bundler-1.13.5/lib/bundler/vendor/thor/lib/thor/command.rb:27:in `run'
+/home/aleksandar/.rvm/gems/jruby-9.1.5.0/gems/bundler-1.13.5/lib/bundler/vendor/thor/lib/thor/invocation.rb:126:in `invoke_command'
+/home/aleksandar/.rvm/gems/jruby-9.1.5.0/gems/bundler-1.13.5/lib/bundler/vendor/thor/lib/thor.rb:359:in `dispatch'
+/home/aleksandar/.rvm/gems/jruby-9.1.5.0/gems/bundler-1.13.5/lib/bundler/cli.rb:20:in `dispatch'
+/home/aleksandar/.rvm/gems/jruby-9.1.5.0/gems/bundler-1.13.5/lib/bundler/vendor/thor/lib/thor/base.rb:440:in `block in start'
+/home/aleksandar/.rvm/gems/jruby-9.1.5.0/gems/bundler-1.13.5/lib/bundler/cli.rb:11:in `start'
+/home/aleksandar/.rvm/gems/jruby-9.1.5.0/gems/bundler-1.13.5/exe/bundle:34:in `<main>'
+org/jruby/RubyKernel.java:974:in `load'
+/home/aleksandar/.rvm/gems/jruby-9.1.5.0/gems/bundler-1.13.5/lib/bundler/friendly_errors.rb:100:in `<eval>'
+org/jruby/RubyKernel.java:995:in `eval'
+/home/aleksandar/.rvm/gems/jruby-9.1.5.0/bin/jruby_executable_hooks:15:in `<main>'
+Couldn't create database for {"adapter"=>"jdbcsplice", "username"=>"splice", "password"=>"admin", "prepared_statements"=>true, "pool"=>1000, "server_url"=>"localhost:1527", "database"=>"splicedb_test"}
+
       </pre>
       <pre>
 CREATE UNIQUE INDEX "UNIQUE_SCHEMA_MIGRATIONS" ON "SCHEMA_MIGRATIONS" ("VERSION")
