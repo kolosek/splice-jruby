@@ -30,14 +30,13 @@
 
 ### Additional information (not neeeded for the set-up)
 
-  The splice engine jar file is located in `/lib` directory
-
-  If making some changes to the splice engine itself, copy the new compiled file and overwrite it in lib directory, like:
-  `~/spliceengine/db-client/target/db-client-2.0.1.34-SNAPSHOT.jar` to the `/lib` directory
-
 ##### Gem which is needed in order to use splice engine is:
 
   `gem 'activerecord-jdbcsplice-adapter'`
+
+And, it depends on:
+
+  `gem 'jdbc-splice'` (no need to specify it directly, it is done in the background)
 
 
 # Starting up the splicemachine and the app
