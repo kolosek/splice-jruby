@@ -28,6 +28,13 @@
   2. Locate `database_example.yml` and rename it to `database.yml`
   3. Run `bundle exec rake db:migrate`
 
+### Set-up production environment (needed for testing puma in production mode)
+
+  1. Open a consolsole and run `budnle exec rake secret` and copy the generated string
+  2. Open `.bashrc` and write at the end:
+     export SPLICE_SECRET_KEY_BASE=COPY_AND_PASTE_STRING_GENERATED_FROM_STEP_1
+  3. Restart computer, or just for this session, run in console `source ~/.bashrc`
+
 ### Additional information (not neeeded for the set-up)
 
 ##### Gem which is needed in order to use splice engine is:
