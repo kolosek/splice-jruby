@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-ruby '2.3.1', :engine => 'jruby', :engine_version => '9.1.5.0'
+ruby '2.3.1'#, :engine => 'jruby', :engine_version => '9.1.5.0'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.5.1'
@@ -68,7 +68,6 @@ group :test do
   gem 'database_cleaner'
   gem 'selenium-webdriver'
   gem 'capybara'
-  gem 'capybara-webkit'
   # Rspec command for spring
   gem 'spring-commands-rspec', '~> 1.0.4', platform: :ruby
 end
