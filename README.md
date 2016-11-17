@@ -74,10 +74,16 @@
 
   *Note: Some of the SQL commands will assume that there are records in database, like where, update etc. , so in `bundle exec rails c`, and create a single record with: `Company.create(name: 'Company')` before running the tests.*
 
-  1. Run the server: `be puma -p 3000 -t 16:16 -e production`
-  2. Run the benchmark `ab -n 10000 -c 1000 -r http://localhost:3000/benchmarks/method_where`
+  **Please note the ID of the created record**, as it will be used in some of the tests.
 
-###### Methods supported:
+  1. Run the server: `bundle exec puma -p 3000 -t 16:16 -e production`
+  2. Run the benchmark with any of these commands:
+     - `ab -n 10000 -c 1000 -r http://localhost:3000/benchmarks/method_where?id=NOTED_ID` (special case)
+     - `ab -n 10000 -c 1000 -r http://localhost:3000/benchmarks/method_create`
+     - `ab -n 10000 -c 1000 -r http://localhost:3000/benchmarks/method_update`
+     - etc.
+
+##### Methods supported:
 
   `method_create`, `method_update`, `method_where`, `method_limit`
 
@@ -92,6 +98,13 @@
   If you want to run the code against `ruby` code and test the app with it, open file `.ruby-version` and change any text in it to `ruby-2.3.1`, or any other ruby version. Return to the previous directory with (`cd ..`), and re-enter the app directory by `cd base-jruby-splice` (in order to refresh the settings)
 
   The database settings for `ruby` is in `database_ruby.yml`. No need to replace or delete the `database.yml`, just modify the `database_ruby.yml` file with your settings.
+
+# Helper Methods
+
+  In order to drop all tables in current database, run in console:
+
+  `bundle exec rake db:splice:destroy_all`
+
 
 # Implementation of Rails on CentOS (centos-release-6-8.el6.centos.12.3.x86_64)
 

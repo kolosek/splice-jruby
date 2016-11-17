@@ -14,7 +14,7 @@ class BenchmarksController < ApplicationController
 
   def method_where
     # Create a company in console before testing it out
-    companies = Company.where(id: 1)
+    companies = Company.where(id: params[:id])
     ids = companies.ids
     head :ok, content_type: "text/html"
   end
