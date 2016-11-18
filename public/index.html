@@ -28,6 +28,8 @@
     <ul class="docs-nav">
       <li><strong>Home</strong></li>
       <li><a href="#overview" class="cc-active">Overview</a></li>
+      <li><a href="#issues" class="cc-active">Issues</a></li>
+      <li><a href="#splice_issues" class="cc-active">Splice Issues</a></li>
       <li><a href="#log_levels" class="cc-active">Log Levels</a></li>
       <li class="separator"></li>
       <li><strong>Performance</strong></li>
@@ -1458,6 +1460,8 @@ ActiveRecord::StatementInvalid:
         </table>
       </div>
 
+      <hr/>
+
       <h3 id="issues">Issues</h3>
       <h4>LIMIT issue</h4> <a class="fixed-label" data-toggle="collapse" href="#issue_limit">
                   Fixed
@@ -1557,7 +1561,9 @@ end
 
 
 
-
+      <br/>
+      <br/>
+      <hr/>
       <h3 id="migration_issues">Migration Issues</h3>
       <h4>rake db:migrate issue</h4><a class="fixed-label" data-toggle="collapse" href="#migration_init">
                   Fixed
@@ -1654,8 +1660,8 @@ ActiveRecord::JDBCError: java.sql.SQLSyntaxErrorException: TYPE 'PRIMARY_KEY' do
       It sets a default value '' (two single quoutes) in the database, instead of an empty string.
       </div>
 
-      <h4>Creating indexes freezes the migration (Derby and Splice)</h4><a class="progress-label" data-toggle="collapse" href="#migration_index">
-                  Partially fixed
+      <h4>Creating indexes freezes the migration</h4><a class="fixed-label" data-toggle="collapse" href="#migration_index">
+                  Partially fixed (Splice Issue)
                 </a>  &nbsp;&nbsp; (by skipping creation of indexes and foreign keys)
       <div class="collapse" id="migration_index">
       When adding an index or a foreign key inside a reference it is causing migration to freeze:
@@ -1751,6 +1757,56 @@ CREATE UNIQUE INDEX "UNIQUE_SCHEMA_MIGRATIONS" ON "SCHEMA_MIGRATIONS" ("VERSION"
 
         It translates to the correct SQL command, but the execution freezes the migration
       </div>
+
+      <hr/>
+
+      <h3 id="splice_issues">Splice Issues</h3>
+
+      <h4>Creating Indexes</h4><a class="progress-label" data-toggle="collapse" href="#splice_index_create">
+                  Failing
+                </a>
+      <div class="collapse" id="splice_index_create">
+      When running a command to create index in sqlshell it freezes and never finishes.
+
+      <pre class="prettyprint">
+CREATE UNIQUE INDEX "UNIQUE_SCHEMA_MIGRATIONS" ON "SCHEMA_MIGRATIONS" ("VERSION")
+      </pre>
+      </div>
+
+      <h4>Creating Foreign Keys</h4><a class="progress-label" data-toggle="collapse" href="#splice_foreign_key">
+                  Failing
+                </a>
+      <div class="collapse" id="splice_foreign_key">
+      When running a command to create foreign key in sqlshell it freezes and never finishes.
+
+      <pre class="prettyprint">
+ALTER TABLE "SETTINGS" ADD CONSTRAINT "FK_RAILS_5676777BF1" FOREIGN KEY ("USER_ID") REFERENCES "USERS" ("ID")
+      </pre>
+      </div>
+
+      <h4>Create New Database</h4><a class="progress-label" data-toggle="collapse" href="#splice_create_new_database">
+                  Failing
+                </a>
+      <div class="collapse" id="splice_create_new_database">
+      When running a command to create new database in sqlshell:
+
+      <pre class="prettyprint">
+connect 'jdbc:splice://localhost:1527/splicedb;user=splice;password=admin';
+      </pre>
+
+      It reports an error:
+      <pre class="prettyprint">
+ERROR 08004: Connection authentication failure occurred.  Reason: userid or password invalid.
+      </pre>
+
+      <br/><br/>
+      Where the same command when run against Derby database, creates a new database.
+      <br/><br/>
+      For Rails use-case this is important as usually one database is used in development mode, and a different one is used for running tests.
+      </div>
+
+
+      <hr/>
 
       <h3 id="log_levels">Log Levels</h3>
       <p> Log levels in Rails are: :debug, :info, :warn, :error, :fatal, and :unknown, corresponding to the log level numbers from 0 up to 5, respectively
