@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-ruby '2.3.1'#, :engine => 'jruby', :engine_version => '9.1.5.0'
+ruby '2.3.1', :engine => 'jruby', :engine_version => '9.1.5.0'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.5.1'
@@ -11,67 +11,49 @@ platforms :jruby do
   gem 'activerecord-jdbcsplice-adapter'
 end
 
+platforms :ruby do
+  gem 'mysql2'
+end
+
+# Server
 gem 'puma'
-# Timeout notification (used in relation with puma to notify and log any long requests)
+# Timeout notification (used in relation with puma)
 gem "rack-timeout"
 
+
+# UI gems and a decorator
+gem 'jquery-rails'
+gem "twitter-bootstrap-rails"
+gem 'draper'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
-# Use CoffeeScript for .coffee assets and views
-gem 'coffee-rails', '~> 4.1.0'
 
-platforms :ruby do
-  gem 'mysql2'
-  # Use postgresql as the database for Active Record
-# gem 'pg'
-end
-
-# Use jquery as the JavaScript library
-gem 'jquery-rails'
-# Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
-gem 'turbolinks'
-# Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
-gem 'jbuilder', '~> 2.0'
-# bundle exec rake doc:rails generates the API under doc/api.
-gem 'sdoc', '~> 0.4.0', group: :doc
-
-gem "twitter-bootstrap-rails"
+# Background Workers
 gem 'sidekiq'
-gem 'sinatra', require: false
-gem 'slim'
 
-gem 'draper'
-
-gem 'rails_12factor'
-
-# Load Jar dependencies
-gem 'lock_jar'
 
 group :development, :test do
   gem 'pry'
   gem 'pry-nav'
-  # gem 'pry-stack_explorer'
-  gem 'byebug', platform: :mri
-
-  # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
-  gem 'spring', platform: :ruby
-
+  gem 'byebug', platform: :ruby
 end
 
 group :test do
   gem 'rspec-rails'
   gem 'shoulda-matchers'
   gem 'factory_girl_rails'
-  gem 'simplecov', :require => false
   gem 'database_cleaner'
-  gem 'selenium-webdriver'
   gem 'capybara'
-  # Rspec command for spring
-  gem 'spring-commands-rspec', '~> 1.0.4', platform: :ruby
+  gem 'simplecov', :require => false
 end
 
 group :development do
   gem 'better_errors'
+end
+
+group :development do
+  # Used for deplying to heroku
+  gem 'rails_12factor'
 end

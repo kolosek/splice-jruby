@@ -3,9 +3,9 @@ require 'sidekiq/testing'
 require 'capybara/rspec'
 
 if ENV['RAILS_ENV'] == 'test'
-  require 'simplecov'
-  SimpleCov.start 'rails'
-  puts "required simplecov"
+  # require 'simplecov'
+  # SimpleCov.start 'rails'
+  # puts "required simplecov"
 end
 
 RSpec.configure do |config|
@@ -34,15 +34,6 @@ RSpec.configure do |config|
     # `true` in RSpec 4.
     mocks.verify_partial_doubles = true
   end
-
-  # see  http://devblog.avdi.org/2012/08/31/configuring-database_cleaner-with-rails-rspec-capybara-and-selenium/
-  # config.before(:suite) do
-  #   # DatabaseCleaner[:active_record].strategy = :transaction
-  #   DatabaseCleaner.strategy = :deletion
-  #   DatabaseCleaner.clean_with(:truncation)
-  #   #Sidekiq::Testing.inline!
-  #   #load Rails.root + "db/seeds.rb"
-  # end
 
   config.before(:suite) do
     DatabaseCleaner.clean_with(:transaction)
