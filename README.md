@@ -32,7 +32,7 @@
 
   1. Open a consolsole and run `budnle exec rake secret` and copy the generated string
   2. Open `.bashrc` and write at the end:
-     export SPLICE_SECRET_KEY_BASE=COPY_AND_PASTE_STRING_GENERATED_FROM_STEP_1
+     export SECRET_KEY_BASE=`COPY_AND_PASTE_STRING_GENERATED_FROM_STEP_1`
   3. Restart computer, or just for this session, run in console `source ~/.bashrc`
 
 ### Additional information (not neeeded for the set-up)
@@ -88,6 +88,8 @@ And, it depends on:
      - `ab -n 10000 -c 1000 -r http://localhost:3000/benchmarks/method_create`
      - `ab -n 10000 -c 1000 -r http://localhost:3000/benchmarks/method_update`
      - etc.
+
+  *Note:* On mac, there is an issue with Apache Benchmark. In order to fix it, follow instructions from http://sudheeraedama.blogspot.rs/2013/05/install-apachebench-on-mac-osx-1075.html
 
 ##### Methods supported:
 
