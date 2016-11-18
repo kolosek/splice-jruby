@@ -4,7 +4,8 @@ default: &default
   password: admin
   prepared_statements: true
   pool: 1000
-  server_url: localhost:1527
+  host: localhost
+  port: 1527
 
 development:
   <<: *default
