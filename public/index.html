@@ -1791,7 +1791,7 @@ ALTER TABLE "SETTINGS" ADD CONSTRAINT "FK_RAILS_5676777BF1" FOREIGN KEY ("USER_I
       When running a command to create new database in sqlshell:
 
       <pre class="prettyprint">
-connect 'jdbc:splice://localhost:1527/splicedb;user=splice;password=admin';
+connect 'jdbc:splice://localhost:1527/splicedb_test;create=true;user=splice;password=admin';
       </pre>
 
       It reports an error:
