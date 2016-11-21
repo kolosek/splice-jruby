@@ -30,10 +30,14 @@
 
 ### Set-up production environment (needed for testing puma in production mode)
 
-  1. Open a consolsole and run `budnle exec rake secret` and copy the generated string
+  1. Open a consolsole and run `bundle exec rake secret` and copy the generated string
   2. Open `.bashrc` and write at the end:
      export SECRET_KEY_BASE=`COPY_AND_PASTE_STRING_GENERATED_FROM_STEP_1`
   3. Restart computer, or just for this session, run in console `source ~/.bashrc`
+
+  Note: In an error about uglifier appears, you might need to install a nodejs on linux:
+
+  `$ sudo apt-get install nodejs`
 
 ### Additional information (not neeeded for the set-up)
 
