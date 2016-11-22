@@ -109,7 +109,7 @@ And, it depends on:
 
   In this app **Ruby**  is used for *MySQL* and **JRuby** for *Splice Engine*
 
-  If you want to run the code against `ruby` code and test the app with it, open file `.ruby-version` and change any text in it to `ruby-2.3.1`, or any other ruby version. Return to the previous directory with (`cd ..`), and re-enter the app directory by `cd base-jruby-splice` (in order to refresh the settings)
+  If you want to run the code against `ruby` code and test the app with it, open file `.ruby-version` and change any text in it to `ruby-2.3.1`, or any other ruby version. Return to the previous directory with (`cd ..`), and re-enter the app directory by `cd splice-jruby` (in order to refresh the settings)
 
   The database settings for `ruby` is in `database_ruby.yml`. No need to replace or delete the `database.yml`, just modify the `database_ruby.yml` file with your settings.
 
