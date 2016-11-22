@@ -31,6 +31,7 @@
       <li><a href="#issues" class="cc-active">Issues</a></li>
       <li><a href="#splice_notes" class="cc-active">Splice Notes</a></li>
       <li><a href="#log_levels" class="cc-active">Log Levels</a></li>
+      <li><a href="#gems" class="cc-active">Splice gems</a></li>
       <li class="separator"></li>
       <li><strong>Performance</strong></li>
       <li><a href="#real_world_performance" class="cc-active">Real World Performance</a></li>
@@ -1811,6 +1812,19 @@ ERROR 08004: Connection authentication failure occurred.  Reason: userid or pass
       <h3 id="log_levels">Log Levels</h3>
       <p> Log levels in Rails are: :debug, :info, :warn, :error, :fatal, and :unknown, corresponding to the log level numbers from 0 up to 5, respectively
       </p>
+
+      <h3 id="gems">Splice gems for Rails</h3>
+      <pre class="prettyprint" style="overflow-x: hidden !important">
+gem 'activerecord-jdbcsplice-adapter'   (gem which should be included in Rails app)
+gem 'jdbc-splice'                       (used by the gem above)
+      </pre>
+
+      <a href="https://github.com/kolosek/activerecord-jdbcsplice-adapter">activerecord-jdbcsplice-adapter</a><br/>
+      <a href="https://github.com/kolosek/jdbc-splice">jdbc-splice</a>
+      <p>
+      </p>
+
+
 
       <h3 id="real_world_performance">Real World Performance</h3>
       <p> Tests are run on puma server with 16 threads and 1 worker. Pool size is 1000 (except for create where the pool size is 10)</p>
