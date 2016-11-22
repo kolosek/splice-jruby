@@ -103,7 +103,7 @@ And, it depends on:
 
 #### Run benchmarks on single SQL commands (where, create, limit etc.):
 
-  `bundle exec rake benchmark:models`
+  `bundle exec rake benchmark:models RAILS_ENV=test`
 
 # Switching between Ruby and JRuby
 
