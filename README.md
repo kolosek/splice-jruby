@@ -22,7 +22,30 @@
   `bundle install`
 
 
+### Starting up the splicemachine and the app
+
+  First, make sure splice engine is up and running:
+
+  1. `cd ~/spliceengine/`
+
+  2. `./start-splice-cluster` (only for the first time). Run `./start-splice-cluster -b`on every other time
+
+    `./start-splice-cluster -h`, for any addtional information
+
+
+##### Possible issues:
+
+  If there are issues with running a splice cluster, you might need to add next line into your `~/.bashrc` file:
+
+  `export LD_LIBRARY_PATH=/usr/local/lib`
+
+##### Notes:
+
+  On linux, if splice cluster is not run on the first time (after running a `./start-splice-cluster -b`), stop the execution, and run `./start-splice-cluster -b` again.
+
+
 ### Setting up a database
+  Now when the cluster is up and running, we need to set-up the database:
 
   1. Delete the `config/database.yml` file.
   2. Locate `database_example.yml` and rename it to `database.yml`
@@ -50,31 +73,10 @@ And, it depends on:
   `gem 'jdbc-splice'` (no need to specify it directly, it is done in the background)
 
 
-# Starting up the splicemachine and the app
-
-  Make sure splice engine is up and running:
-
-  1. `cd ~/spliceengine/`
-
-  2. `./start-splice-cluster` (only for the first time). Run `./start-splice-cluster -b`on every other time
-
-    `./start-splice-cluster -h`, for any addtional information
-
-
-##### Possible issues:
-
-  If there are issues with running a splice cluster, you might need to add next line into your `~/.bashrc` file:
-
-  `export LD_LIBRARY_PATH=/usr/local/lib`
-
-##### Notes:
-
-  On linux, if splice cluster is not run on the first time (after running a `./start-splice-cluster -b`), stop the execution, and run `./start-splice-cluster -b` again.
-
 
 # Testing
 
-  Before running tests or benchmarks start splice cluster first: `./start-splice-cluster -b`
+  Before running tests or benchmarks, make sure that splice cluster is running: `./start-splice-cluster -b`
 
 #### Run tests
 
