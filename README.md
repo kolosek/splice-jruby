@@ -99,7 +99,7 @@ And, it depends on:
 
 ##### Methods supported:
 
-  `method_create`, `method_update`, `method_where`, `method_limit`
+  `method_create`, `method_update`, `method_where`, `method_limit`, `method_offset`, `method_group`, `method_select`
 
 #### Run benchmarks on single SQL commands (where, create, limit etc.):
 

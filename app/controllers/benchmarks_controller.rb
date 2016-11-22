@@ -32,8 +32,8 @@ class BenchmarksController < ApplicationController
   end
 
   def method_group
-    companies = Company.group(:name)
-    ids = companies.ids
+    companies = Company.grouped
+    ids = companies.count
     head :ok, content_type: "text/html"
   end
 
