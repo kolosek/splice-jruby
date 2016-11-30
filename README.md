@@ -78,9 +78,18 @@ And, it depends on:
 
   Before running tests or benchmarks, make sure that splice cluster is running: `./start-splice-cluster -b`
 
-#### Run tests
+#### Run all test tests
 
   `bundle exec rspec spec/`
+
+#### Run specific test
+
+  `bundle exec rspec spec/models/company_spec.rb:13` (13 is the line number)
+
+#### Run specific test with logs enabled
+
+  `LOGS=true bundle exec rspec spec/models/company_spec.rb:13`
+
 
 #### Run real server-client test:
 
@@ -89,6 +98,8 @@ And, it depends on:
   **Please note the ID of the created record**, as it will be used in some of the tests.
 
   1. Run the server: `bundle exec puma -p 3000 -t 16:16 -e production`
+
+      *Note:* Run server with logs enabled: `LOGS=true bundle exec puma -p 3000 -t 16:16 -e production`
   2. Run the benchmark with any of these commands:
      - `ab -n 10000 -c 1000 -r http://localhost:3000/benchmarks/method_where?id=NOTED_ID` (special case)
      - `ab -n 10000 -c 1000 -r http://localhost:3000/benchmarks/method_create`
