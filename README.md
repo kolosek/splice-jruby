@@ -24,7 +24,7 @@
 
 ### Starting up the splicemachine and the app
 
-  First, make sure splice engine is up and running:
+  First, make sure splice is up and running:
 
   1. `cd ~/spliceengine/`
 
@@ -33,11 +33,17 @@
     `./start-splice-cluster -h`, for any addtional information
 
 
-##### Possible issues:
+##### Possible issues with missing libary:
 
   If there are issues with running a splice cluster, you might need to add next line into your `~/.bashrc` file:
 
   `export LD_LIBRARY_PATH=/usr/local/lib`
+
+
+##### Possible issue with freezing migrations:
+
+  Splice **requires a certain amount of free space** on the hard-drive in order to be run correctly. Make sure that there is at least 10% of free space on the hard drive. If you have for example 80 GB, make sure that at least 8 GB is available of free space, as 2-3 GB will not be enough. (The actual free space might not be used, but the hard-drive will need to have it)
+
 
 ##### Notes:
 
@@ -64,7 +70,7 @@
 
 ### Additional information (not neeeded for the set-up)
 
-##### Gem which is needed in order to use splice engine is:
+##### Gem which is needed in order to use splice is:
 
   `gem 'activerecord-jdbcsplice-adapter'`
 
@@ -118,7 +124,7 @@ And, it depends on:
 
 # Switching between Ruby and JRuby
 
-  In this app **Ruby**  is used for *MySQL* and **JRuby** for *Splice Engine*
+  In this app **Ruby**  is used for *MySQL* and **JRuby** for *Splice*
 
   If you want to run the code against `ruby` code and test the app with it, open file `.ruby-version` and change any text in it to `ruby-2.3.1`, or any other ruby version. Return to the previous directory with (`cd ..`), and re-enter the app directory by `cd splice-jruby` (in order to refresh the settings)
 

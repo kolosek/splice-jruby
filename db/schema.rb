@@ -53,12 +53,14 @@ ActiveRecord::Schema.define(version: 20161026132222) do
     t.decimal  "velocity",                       precision: 5, scale: 2, default: 0.0
     t.boolean  "enabled",     limit: 1,                                  default: true
     t.binary   "image",       limit: 2147483647
-    t.date     "birthday",    limit: 10,                                 default: '2016-11-15'
-    t.time     "birthtime",   limit: 8,                                  default: '2000-01-01 14:20:03'
-    t.datetime "deadline",    limit: 29,                                 default: '2016-11-15 14:20:03'
+    t.date     "birthday",    limit: 10,                                 default: '2016-12-08'
+    t.time     "birthtime",   limit: 8,                                  default: '2000-01-01 12:03:28'
+    t.datetime "deadline",    limit: 29,                                 default: '2016-12-08 12:03:28'
     t.datetime "created_at",  limit: 29,                                                                 null: false
     t.datetime "updated_at",  limit: 29,                                                                 null: false
   end
+
+  add_index "settings", ["user_id"], name: "sql161208130328670"
 
   create_table "tags", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -71,6 +73,9 @@ ActiveRecord::Schema.define(version: 20161026132222) do
     t.integer "tag_id",  limit: 10, null: false
   end
 
+  add_index "tags_users", ["tag_id", "user_id"], name: "index_tags_users_on_tag_id_and_user_id"
+  add_index "tags_users", ["user_id", "tag_id"], name: "index_tags_users_on_user_id_and_tag_id"
+
   create_table "users", force: :cascade do |t|
     t.integer  "company_id", limit: 10
     t.string   "name",       limit: 255
@@ -80,4 +85,5 @@ ActiveRecord::Schema.define(version: 20161026132222) do
     t.integer  "credit",     limit: 10,  default: 0
   end
 
+  add_foreign_key "settings", "users"
 end
