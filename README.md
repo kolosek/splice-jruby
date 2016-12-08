@@ -42,7 +42,7 @@
 
 ##### Possible issue with freezing migrations:
 
-  Splice **requires a certain amount of free space** on the hard-drive in order to be run correctly. Make sure that there is at least 10% of free space on the hard drive. If you have for example 80 GB, make sure that at least 8 GB is available of free space, as 2-3 GB will not be enough. (The actual free space might not be used, but the hard-drive will need to have it)
+  Splice **requires a certain amount of free space** on the hard-drive in order to be run correctly. Make sure that there is at least 10% of free space on the hard drive. If you have for example 80 GB, make sure that at least 8 GB is available of free space, as 2-3 GB might not be enough. (The actual free space might not be used, but the hard-drive will need to have it)
 
 
 ##### Notes:
